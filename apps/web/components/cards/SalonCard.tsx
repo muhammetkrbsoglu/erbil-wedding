@@ -33,7 +33,7 @@ export const SalonCard = ({ imageUrl, name, capacity, slug }: SalonCardProps) =>
 
           {/* Capacity Info */}
           <div className="flex items-center gap-2 text-foreground/70">
-            <Users size={18} className="text-primary" />
+            <Users size={18} className="text-accent" />
             <span className="text-sm font-inter">
               Maks. {capacity} Kişi
             </span>

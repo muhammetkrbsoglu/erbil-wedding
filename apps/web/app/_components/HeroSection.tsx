@@ -50,7 +50,7 @@ export const HeroSection = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="text-base font-medium px-8 py-4 h-auto border-primary text-white hover:bg-primary hover:text-foreground"
+            className="text-base font-medium px-8 py-4 h-auto border-accent text-white hover:bg-accent hover:text-accent-foreground"
           >
             Hemen Teklif Al
           </Button>
