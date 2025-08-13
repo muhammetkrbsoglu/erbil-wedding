@@ -21,7 +21,7 @@ export default function AdminDashboardLayout({
               Dashboard
             </a>
             <a
-              href="/admin/salons"
+              href="/admin/salonlar"
               className="flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
             >
               Salonlar
