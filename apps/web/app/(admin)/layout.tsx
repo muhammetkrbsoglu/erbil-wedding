@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { cn } from "@repo/ui/lib/utils";
-import { Header } from "@repo/ui/layout/header";
-import { Footer } from "@repo/ui/layout/footer";
 import { ClerkProvider } from "@clerk/nextjs";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,11 +15,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Erbil Wedding",
-  description: "Hayallerinizdeki düğün için en özel mekanlar.",
+  title: "Admin Panel - Erbil Wedding",
+  description: "Admin panel for managing wedding venues and bookings.",
 };
 
-export default function RootLayout({
+export default function AdminRootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -36,9 +34,7 @@ export default function RootLayout({
         )}
       >
         <ClerkProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          {children}
         </ClerkProvider>
       </body>
     </html>
