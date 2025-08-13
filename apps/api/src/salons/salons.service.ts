@@ -9,4 +9,17 @@ export class SalonsService {
   findAll() {
     return this.prisma.salon.findMany();
   }
+
+  async update(id: string, updateSalonDto: Partial<Salon>) {
+    return this.prisma.salon.update({
+      where: { id },
+      data: updateSalonDto,
+    });
+  }
+
+  async remove(id: string) {
+    return this.prisma.salon.delete({
+      where: { id },
+    });
+  }
 }

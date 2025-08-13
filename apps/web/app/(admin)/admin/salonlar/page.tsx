@@ -8,6 +8,7 @@ import {
 } from "../../../../components/ui/table";
 import { getSalons } from "../../../../lib/api";
 import { AddSalonForm } from "./add-salon-form";
+import { SalonActions } from "./salon-actions";
 
 export default async function AdminSalonsPage() {
   const salons = await getSalons();
@@ -28,6 +29,7 @@ export default async function AdminSalonsPage() {
               <TableHead>Salon Adı</TableHead>
               <TableHead>Kapasite</TableHead>
               <TableHead>Oluşturulma Tarihi</TableHead>
+              <TableHead className="text-right">Eylemler</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -37,6 +39,9 @@ export default async function AdminSalonsPage() {
                 <TableCell>{salon.capacity}</TableCell>
                 <TableCell>
                   {salon.createdAt ? new Date(salon.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}
+                </TableCell>
+                <TableCell className="text-right">
+                  <SalonActions salon={salon} />
                 </TableCell>
               </TableRow>
             ))}

@@ -66,6 +66,13 @@ app.post('/salons', (req, res) => {
     });
   }
   
+  // Validate image URL format
+  if (!imageUrl.startsWith('https://')) {
+    return res.status(400).json({ 
+      error: 'Image URL must start with https://' 
+    });
+  }
+  
   // Check if slug already exists
   if (salons.find(salon => salon.slug === slug)) {
     return res.status(409).json({ 

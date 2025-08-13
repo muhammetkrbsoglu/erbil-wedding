@@ -67,17 +67,21 @@ export function AddSalonForm() {
             />
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="imageUrl">Görsel URL'si</Label>
-            <Input
-              id="imageUrl"
-              name="imageUrl"
-              type="url"
-              placeholder="https://example.com/image.jpg"
-              required
-              disabled={isSubmitting}
-            />
-          </div>
+                      <div className="space-y-2">
+              <Label htmlFor="imageUrl">Görsel URL'si</Label>
+              <Input
+                id="imageUrl"
+                name="imageUrl"
+                type="url"
+                placeholder="https://images.unsplash.com/photo-..."
+                required
+                disabled={isSubmitting}
+              />
+              <div className="text-xs text-muted-foreground space-y-1">
+                <p>Önerilen: Unsplash, Pexels veya Picsum Photos'dan görsel URL'si</p>
+                <p>Örnek: https://images.unsplash.com/photo-1519167758481-83f550bb49b3</p>
+              </div>
+            </div>
           
           <DialogFooter>
             <Button 
