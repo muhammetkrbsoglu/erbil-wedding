@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Users, Car, Wifi, Utensils } from "lucide-react";
 import { placeholderSalons } from "../../../lib/data";
@@ -164,12 +165,14 @@ export default async function SalonDetailPage({ params }: PageProps) {
                     </p>
                   </div>
                   
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
-                  >
-                    Randevu Talebi Oluştur
-                  </Button>
+                  <Link href={`/salonlar/${slug}/randevu-al`}>
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
+                    >
+                      Randevu Talebi Oluştur
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
