@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Users } from "lucide-react";
 import { Button } from "../ui/button";
+import type { Salon } from "../../lib/data";
 
-interface SalonCardProps {
-  imageUrl: string;
-  name: string;
-  capacity: number;
-  slug: string;
-}
-
-export const SalonCard = ({ imageUrl, name, capacity, slug }: SalonCardProps) => {
+export const SalonCard = ({ salon }: { salon: Salon }) => {
+  const { imageUrl, name, capacity, slug } = salon;
   return (
     <Link href={`/salonlar/${slug}`} className="block group">
       <div className="border border-border rounded-lg bg-card transition-all duration-300 hover:shadow-xl overflow-hidden">
