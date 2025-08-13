@@ -4,8 +4,9 @@
 
 @layer base {
   :root {
-    --background: 248 246 244; /* #F8F6F4 */
-    --foreground: 54 69 79;   /* #36454F */
+    /* Use HSL components (h s% l%) for Tailwind's hsl(var(--token)) utilities */
+    --background: 30 22% 96%;       /* #F8F6F4  (off-white) */
+    --foreground: 204 19% 26%;      /* #36454F  (anthracite) */
     
     --card: 255 255 255;
     --card-foreground: 54 69 79;
@@ -13,19 +14,19 @@
     --popover: 255 255 255;
     --popover-foreground: 54 69 79;
     
-    --primary: 248 246 244;      /* Off-White (same as background) */
-    --primary-foreground: 54 69 79;
+    --primary: 30 22% 96%;          /* align primary to off-white */
+    --primary-foreground: 204 19% 26%;
     
-    --secondary: 211 197 188;   /* Beige */
-    --secondary-foreground: 54 69 79;
+    --secondary: 24 21% 78%;         /* #D3C5BC (beige) */
+    --secondary-foreground: 204 19% 26%;
 
-    --accent: 46 83 57;         /* Emerald Green */
-    --accent-foreground: 248 246 244;
+    --accent: 138 29% 25%;          /* #2E5339 (emerald) */
+    --accent-foreground: 30 22% 96%;
     
-    --border: 234 234 234;
-    --input: 234 234 234;
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
 
-    --ring: 46 83 57;
+    --ring: 138 29% 25%;
     
     --radius: 0.5rem;
   }
