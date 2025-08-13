@@ -1,4 +1,4 @@
-import { HeroSection } from "../components/sections/HeroSection";
+import { HeroSection } from "./_components/HeroSection";
 import { BrandStorySection } from "../components/sections/BrandStorySection";
 import { SalonShowcaseSection } from "../components/sections/SalonShowcaseSection";
 import { RealWeddingStoriesSection } from "../components/sections/RealWeddingStoriesSection";
