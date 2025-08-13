@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import React from "react";
 import { cn } from "@repo/ui/lib/utils";
 import { Header } from "@repo/ui/layout/header";
 import { Footer } from "@repo/ui/layout/footer";
@@ -24,7 +25,7 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -34,11 +35,9 @@ export default function RootLayout({
           playfair.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
