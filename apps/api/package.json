@@ -23,6 +23,7 @@
   "dependencies": {
     "@acme/db": "*",
     "@acme/types": "*",
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",

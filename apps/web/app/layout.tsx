@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { cn } from "@repo/ui/lib/utils";
-import { Header } from "@repo/ui/layout/header";
+import { AuthenticatedHeader } from "../components/layout/AuthenticatedHeader";
 import { Footer } from "@repo/ui/layout/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,9 +35,11 @@ export default function RootLayout({
           playfair.variable
         )}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ClerkProvider>
+          <AuthenticatedHeader />
+          <main>{children}</main>
+          <Footer />
+        </ClerkProvider>
       </body>
     </html>
   );
