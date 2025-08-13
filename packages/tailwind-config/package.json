@@ -1,0 +1,10 @@
+{
+  "name": "@acme/tailwind-config",
+  "version": "0.1.0",
+  "main": "tailwind.config.ts",
+  "types": "tailwind.config.ts",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
