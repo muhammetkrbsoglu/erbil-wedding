@@ -1,7 +1,9 @@
 import { SalonCard } from "../cards/SalonCard";
-import { placeholderSalons } from "../../lib/data";
+import { getSalons } from "../../lib/api";
 
-export const SalonShowcaseSection = () => {
+export const SalonShowcaseSection = async () => {
+  const salons = await getSalons();
+
   return (
     <section className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -14,7 +16,7 @@ export const SalonShowcaseSection = () => {
 
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {placeholderSalons.map((salon) => (
+          {salons.map((salon) => (
             <SalonCard key={salon.id} salon={salon} />
           ))}
         </div>

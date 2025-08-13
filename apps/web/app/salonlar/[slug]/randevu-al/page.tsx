@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { placeholderSalons } from "../../../../lib/data";
+import { getSalonBySlug } from "../../../../lib/api";
 import { Button } from "../../../../components/ui/button";
 import { Input } from "../../../../components/ui/input";
 import { Label } from "../../../../components/ui/label";
@@ -21,7 +21,7 @@ export default async function RequestQuotePage({ params }: PageProps) {
   const { slug } = await params;
   
   // Find the salon by slug
-  const salon = placeholderSalons.find((salon) => salon.slug === slug);
+  const salon = await getSalonBySlug(slug);
 
   // If no salon is found, render 404 page
   if (!salon) {

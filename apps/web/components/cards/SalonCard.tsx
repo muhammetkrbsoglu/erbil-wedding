@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Users } from "lucide-react";
 import { Button } from "../ui/button";
-import type { Salon } from "../../lib/data";
+import type { Salon } from "@acme/types";
 
 export const SalonCard = ({ salon }: { salon: Salon }) => {
   const { imageUrl, name, capacity, slug } = salon;

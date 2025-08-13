@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Users, Car, Wifi, Utensils } from "lucide-react";
-import { placeholderSalons } from "../../../lib/data";
+import { getSalonBySlug } from "../../../lib/api";
 import { Button } from "../../../components/ui/button";
 import {
   Carousel,
@@ -29,7 +29,7 @@ export default async function SalonDetailPage({ params }: PageProps) {
   const { slug } = await params;
   
   // Find the salon by slug
-  const salon = placeholderSalons.find((salon) => salon.slug === slug);
+  const salon = await getSalonBySlug(slug);
 
   // If no salon is found, render 404 page
   if (!salon) {
