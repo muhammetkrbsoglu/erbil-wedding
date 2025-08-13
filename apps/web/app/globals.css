@@ -13,8 +13,8 @@
     --popover: 255 255 255;
     --popover-foreground: 54 69 79;
     
-    --primary: 212 175 55;      /* Champagne Gold */
-    --primary-foreground: 54 69 79;
+    --primary: 71 85 105;       /* Slate-600 */
+    --primary-foreground: 255 255 255;
     
     --secondary: 248 250 252;   /* Slate-50 */
     --secondary-foreground: 54 69 79;
@@ -22,8 +22,8 @@
     --accent: 46 83 57;         /* Emerald Green */
     --accent-foreground: 255 255 255;
     
-    --border: 234 234 234;
-    --input: 234 234 234;
+    --border: 229 231 235;
+    --input: 243 244 246;
 
     --ring: 46 83 57;
     
