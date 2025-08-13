@@ -15,7 +15,7 @@ export const CTASection = () => {
             <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 hover:shadow-lg h-12 px-8 text-base font-semibold">
               Ücretsiz Randevu Al
             </button>
-            <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-primary bg-background hover:bg-primary hover:text-primary-foreground h-12 px-8 text-base">
+            <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-accent bg-background hover:bg-accent hover:text-accent-foreground h-12 px-8 text-base">
               Salonları İncele
             </button>
           </div>

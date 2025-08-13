@@ -21,7 +21,7 @@ export const BrandStorySection = () => {
           {/* Right Column - Content */}
           <div className="flex flex-col justify-center space-y-6">
             {/* Eyebrow Text */}
-            <div className="text-primary font-inter font-medium text-sm tracking-widest uppercase">
+            <div className="text-accent font-inter font-medium text-sm tracking-widest uppercase">
               ERBİL WEDDING HİKAYESİ
             </div>
 

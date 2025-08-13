@@ -39,7 +39,7 @@ export const RealWeddingStoriesSection = () => {
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="bg-card rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border/50">
               {/* Placeholder for couple photo */}
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-accent/20 to-accent/20 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <span className="text-2xl font-serif font-bold text-foreground/60">
                   {testimonial.couple.charAt(0)}{testimonial.couple.split(' & ')[1]?.charAt(0) || ''}
                 </span>
@@ -63,7 +63,7 @@ export const RealWeddingStoriesSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-primary bg-background hover:bg-primary hover:text-primary-foreground h-11 px-8">
+          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-accent bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
             Daha Fazla Hikaye
           </button>
         </div>
