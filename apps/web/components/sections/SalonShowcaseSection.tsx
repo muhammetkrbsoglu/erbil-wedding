@@ -23,7 +23,7 @@ export const SalonShowcaseSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-24 bg-secondary/10">
+    <section className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
