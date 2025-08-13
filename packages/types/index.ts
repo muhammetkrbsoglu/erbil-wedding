@@ -4,4 +4,6 @@ export type Salon = {
   slug: string;
   capacity: number;
   imageUrl: string;
+  createdAt?: string;
+  updatedAt?: string;
 };

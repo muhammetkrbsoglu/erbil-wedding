@@ -1,5 +1,3 @@
-import { PrismaClient } from "@acme/db";
-import { Button } from "../../../../components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,13 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "../../../../components/ui/table";
-
-const prisma = new PrismaClient();
+import { getSalons } from "../../../../lib/api";
+import { AddSalonForm } from "./add-salon-form";
 
 export default async function AdminSalonsPage() {
-  const salons = await prisma.salon.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const salons = await getSalons();
 
   return (
     <div className="space-y-8">
@@ -22,7 +18,7 @@ export default async function AdminSalonsPage() {
         <h1 className="text-2xl md:text-3xl font-bold font-playfair text-foreground">
           Salonları Yönet
         </h1>
-        <Button>Yeni Salon Ekle</Button>
+        <AddSalonForm />
       </div>
 
       <div className="bg-card border rounded-lg overflow-hidden">
@@ -40,7 +36,7 @@ export default async function AdminSalonsPage() {
                 <TableCell>{salon.name}</TableCell>
                 <TableCell>{salon.capacity}</TableCell>
                 <TableCell>
-                  {new Date(salon.createdAt).toLocaleDateString()}
+                  {salon.createdAt ? new Date(salon.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}
                 </TableCell>
               </TableRow>
             ))}
