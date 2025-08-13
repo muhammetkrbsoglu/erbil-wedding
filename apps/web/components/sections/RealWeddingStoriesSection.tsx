@@ -1,71 +1,58 @@
+import Image from "next/image";
+
 export const RealWeddingStoriesSection = () => {
   const testimonials = [
     {
-      id: 1,
-      couple: "Ayşe & Mehmet",
-      quote: "Hayalimizden de güzel bir düğün geçirdik. Erbil Wedding ekibi her detayı mükemmel şekilde organize etti.",
-      venue: "Grand Palace",
-      date: "Eylül 2024"
+      quote:
+        "Hayalimizden de güzel bir düğün geçirdik. Erbil Wedding ekibi her detayı mükemmel şekilde organize etti.",
+      author: "Ayşe & Mehmet",
+      imageUrl:
+        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=512&auto=format&fit=crop",
     },
     {
-      id: 2,
-      couple: "Zeynep & Can",
-      quote: "Profesyonel yaklaşımları ve samimi ilgileri sayesinde stressiz bir düğün süreci yaşadık. Herkese tavsiye ederiz.",
-      venue: "Crystal Ballroom", 
-      date: "Ağustos 2024"
+      quote:
+        "Profesyonel yaklaşımları ve samimi ilgileri sayesinde stressiz bir düğün süreci yaşadık. Herkese tavsiye ederiz.",
+      author: "Zeynep & Can",
+      imageUrl:
+        "https://images.unsplash.com/photo-1520975922329-1916a3b3f023?q=80&w=512&auto=format&fit=crop",
     },
     {
-      id: 3,
-      couple: "Elif & Emre",
-      quote: "Bahçe terasında gerçekleştirdiğimiz düğünümüz tam istediğimiz gibiydi. Romantik ve unutulmaz bir gece oldu.",
-      venue: "Garden Terrace",
-      date: "Haziran 2024"
-    }
+      quote:
+        "Bahçe terasında gerçekleştirdiğimiz düğünümüz tam istediğimiz gibiydi. Romantik ve unutulmaz bir gece oldu.",
+      author: "Elif & Emre",
+      imageUrl:
+        "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=512&auto=format&fit=crop",
+    },
   ];
 
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
-            <span className="font-playfair">Mutlu Çiftlerimizden</span>
-          </h2>
-          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Bizimle hayallerindeki düğünü gerçekleştiren çiftlerimizin deneyimlerini keşfedin.
-          </p>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground text-center mb-16">
+          Bizimle Mutluluğa Adım Atan Çiftlerimiz
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-card rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border/50">
-              {/* Placeholder for couple photo */}
-              <div className="w-20 h-20 bg-gradient-to-br from-accent/20 to-accent/20 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <span className="text-2xl font-serif font-bold text-foreground/60">
-                  {testimonial.couple.charAt(0)}{testimonial.couple.split(' & ')[1]?.charAt(0) || ''}
-                </span>
-              </div>
-              
-              <blockquote className="text-center mb-6">
-                <p className="text-foreground/80 italic leading-relaxed mb-4">
-                  "{testimonial.quote}"
-                </p>
-                <footer>
-                  <cite className="text-foreground font-semibold not-italic">
-                    {testimonial.couple}
-                  </cite>
-                  <div className="text-sm text-foreground/60 mt-1">
-                    {testimonial.venue} • {testimonial.date}
-                  </div>
-                </footer>
-              </blockquote>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((t, idx) => (
+            <div
+              key={idx}
+              className="bg-card border border-border rounded-lg p-8 flex flex-col items-center text-center"
+            >
+              <Image
+                src={t.imageUrl}
+                alt={`${t.author} - mutlu çift`}
+                width={96}
+                height={96}
+                className="w-24 h-24 rounded-full object-cover border-2 border-accent"
+              />
+              <p className="mt-6 italic text-foreground/80 font-inter leading-relaxed">
+                “{t.quote}”
+              </p>
+              <footer className="mt-6 font-serif font-bold text-foreground">
+                {t.author}
+              </footer>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-accent bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
-            Daha Fazla Hikaye
-          </button>
         </div>
       </div>
     </section>
