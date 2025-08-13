@@ -41,7 +41,7 @@ export const RealWeddingStoriesSection = () => {
               {/* Placeholder for couple photo */}
               <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full mx-auto mb-6 flex items-center justify-center">
                 <span className="text-2xl font-serif font-bold text-foreground/60">
-                  {testimonial.couple.split(' & ')[0][0]}{testimonial.couple.split(' & ')[1][0]}
+                  {testimonial.couple.charAt(0)}{testimonial.couple.split(' & ')[1]?.charAt(0) || ''}
                 </span>
               </div>
               
