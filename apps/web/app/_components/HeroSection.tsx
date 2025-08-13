@@ -10,14 +10,14 @@ export const HeroSection = () => {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
-        // poster="/hero-video-poster.jpg" // Add a high-quality poster image here
+        style={{ backgroundColor: '#1e293b' }}
       >
         <source
           src="https://videos.pexels.com/video-files/856945/856945-hd_1920_1080_25fps.mp4"
           type="video/mp4"
         />
         {/* Fallback for browsers that don't support video */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background to-secondary/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800" />
       </video>
 
       {/* Overlay for better text readability */}
