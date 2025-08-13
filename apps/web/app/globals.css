@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 248 246 244; /* #F8F6F4 */
+    --background: 255 255 255; /* #FFFFFF */
     --foreground: 54 69 79;   /* #36454F */
     
     --card: 255 255 255;
@@ -16,11 +16,11 @@
     --primary: 212 175 55;      /* Champagne Gold */
     --primary-foreground: 54 69 79;
     
-    --secondary: 211 197 188;   /* Beige */
+    --secondary: 248 250 252;   /* Slate-50 */
     --secondary-foreground: 54 69 79;
 
     --accent: 46 83 57;         /* Emerald Green */
-    --accent-foreground: 248 246 244;
+    --accent-foreground: 255 255 255;
     
     --border: 234 234 234;
     --input: 234 234 234;
