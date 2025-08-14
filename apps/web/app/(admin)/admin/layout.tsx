@@ -52,9 +52,9 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-8">
+      <div className="flex-1 p-8">
         {children}
-      </main>
+      </div>
     </div>
   );
 }

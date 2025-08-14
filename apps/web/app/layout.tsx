@@ -4,6 +4,7 @@ import { cn } from "@repo/ui/lib/utils";
 import { Header } from "@repo/ui/layout/header";
 import { Footer } from "@repo/ui/layout/footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,10 +37,13 @@ export default function RootLayout({
           playfair.variable
         )}
       >
-  <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </div>
         </ClerkProvider>
       </body>
     </html>
