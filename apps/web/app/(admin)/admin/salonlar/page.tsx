@@ -9,8 +9,20 @@ import {
 import { getSalons } from "../../../../lib/api";
 import { AddSalonForm } from "./add-salon-form";
 import { SalonActions } from "./salon-actions";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function AdminSalonsPage() {
+  const { userId, sessionClaims } = await auth();
+  if (!userId) {
+    redirect("/sign-in");
+  }
+  const role =
+    (sessionClaims?.metadata as any)?.role ||
+    (sessionClaims?.publicMetadata as any)?.role;
+  if (role !== "admin") {
+    redirect("/");
+  }
   const salons = await getSalons();
 
   return (

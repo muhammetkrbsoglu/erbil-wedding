@@ -3,12 +3,18 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async function AdminDashboardPage() {
-  const { userId } = await auth();
-
+  const { userId, sessionClaims } = await auth();
+  console.log("[ADMIN] sessionClaims (full):", JSON.stringify(sessionClaims, null, 2));
   if (!userId) {
     redirect("/sign-in");
   }
-
+  const role =
+    (sessionClaims?.metadata as any)?.role ||
+    (sessionClaims?.publicMetadata as any)?.role;
+  console.log("[ADMIN] role:", role);
+  if (role !== "admin") {
+    redirect("/");
+  }
   return (
     <div className="space-y-8">
       {/* Header Section */}
