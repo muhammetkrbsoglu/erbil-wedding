@@ -267,3 +267,42 @@ export async function createReservation(formData: FormData) {
     throw new Error("Failed to create reservation. Please try again.");
   }
 }
+
+export async function updateReservationStatus(formData: FormData) {
+  "use server";
+
+  // Check authentication - only admins can update reservation status
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  // Extract form data
+  const reservationId = formData.get("reservationId") as string;
+  const newStatus = formData.get("newStatus") as string;
+
+  // Validate required fields
+  if (!reservationId || !newStatus) {
+    throw new Error("Reservation ID and new status are required");
+  }
+
+  // Validate status values
+  const validStatuses = ["pending", "confirmed", "cancelled"];
+  if (!validStatuses.includes(newStatus)) {
+    throw new Error("Invalid status value");
+  }
+
+  try {
+    // Update reservation status in database
+    await prisma.reservation.update({
+      where: { id: reservationId },
+      data: { status: newStatus },
+    });
+
+    // Revalidate the admin reservations page to show updated data
+    revalidatePath("/admin/randevular");
+  } catch (error) {
+    console.error("Error updating reservation status:", error);
+    throw new Error("Failed to update reservation status. Please try again.");
+  }
+}

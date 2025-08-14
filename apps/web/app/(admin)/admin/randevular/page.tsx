@@ -6,9 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "../../../../components/ui/table";
-import { Badge } from "../../../../components/ui/badge";
 import { PrismaClient } from "@acme/db";
 import type { Reservation, Salon } from "@acme/types";
+import { UpdateStatusForm } from "./update-status-form";
 
 const prisma = new PrismaClient();
 
@@ -32,18 +32,7 @@ async function getReservations() {
   });
 }
 
-function getStatusBadge(status: string) {
-  switch (status) {
-    case 'pending':
-      return <Badge variant="warning">Beklemede</Badge>;
-    case 'confirmed':
-      return <Badge variant="success">Onaylandı</Badge>;
-    case 'cancelled':
-      return <Badge variant="destructive">İptal Edildi</Badge>;
-    default:
-      return <Badge variant="outline">{status}</Badge>;
-  }
-}
+
 
 export default async function AdminAppointmentsPage() {
   const reservations = await getReservations();
@@ -86,7 +75,7 @@ export default async function AdminAppointmentsPage() {
                   <TableCell>{reservation.eventDateRange}</TableCell>
                   <TableCell>{reservation.eventType}</TableCell>
                   <TableCell>{reservation.salon.name}</TableCell>
-                  <TableCell>{getStatusBadge(reservation.status)}</TableCell>
+                  <TableCell><UpdateStatusForm reservation={reservation} /></TableCell>
                   <TableCell>
                     {new Date(reservation.createdAt).toLocaleDateString('tr-TR', {
                       year: 'numeric',
