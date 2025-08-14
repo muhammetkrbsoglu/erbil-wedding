@@ -1,10 +1,19 @@
+
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-export default function AdminDashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+  const { sessionClaims } = await auth();
+
+  // If the user does not have the admin role, redirect them to the homepage
+  const metadata = sessionClaims?.metadata as Record<string, any> | undefined;
+  const publicMetadata = sessionClaims?.publicMetadata as Record<string, any> | undefined;
+  const role = metadata?.role || publicMetadata?.role;
+  if (role !== 'admin') {
+    redirect('/');
+  }
+
   return (
     <div className="flex min-h-screen bg-background">
       {/* Sidebar */}

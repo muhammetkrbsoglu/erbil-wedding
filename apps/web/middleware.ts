@@ -8,11 +8,13 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)', // The sign-in page
   '/sign-up(.*)', // The sign-up page
 ]);
+const isProtectedRoute = createRouteMatcher([
+  '/admin(.*)',
+]);
 
 export default clerkMiddleware((auth, req) => {
-  // Protect all routes that are not explicitly marked as public.
-  if (!isPublicRoute(req)) {
-    auth.protect();
+  if (isProtectedRoute(req)) {
+    auth().protect(); // This will redirect unauthenticated users to the sign-in URL specified in your env variables or default to a Clerk-hosted page if not set. We will set this in the next step.
   }
 });
 
