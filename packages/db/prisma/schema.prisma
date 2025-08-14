@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql" 
   url      = env("DATABASE_URL")
 }
 
@@ -33,12 +33,10 @@ model Reservation {
   eventDateRange String
   eventType      String
   notes          String?
-  status         String   @default("pending") // e.g., "pending", "confirmed", "cancelled"
+  status         String   @default("pending")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
   salon   Salon  @relation(fields: [salonId], references: [id])
   salonId String
-
-  @@map("reservations")
 }

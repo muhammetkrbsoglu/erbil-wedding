@@ -1,5 +1,5 @@
 {
-  "name": "prisma-client-a2a53fb87188619cb2b486bcbe9083eeb885c4d9f8e88e838795d717cf27b3a5",
+  "name": "@acme/db",
   "main": "index.js",
   "types": "index.d.ts",
   "browser": "index-browser.js",
