@@ -1,5 +1,10 @@
+"use client";
+
 import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { getSalonBySlug } from "../../../../lib/api";
+import { createReservation } from "../../../../lib/actions";
 import { Button } from "../../../../components/ui/button";
 import { Input } from "../../../../components/ui/input";
 import { Label } from "../../../../components/ui/label";
@@ -11,17 +16,61 @@ import {
   SelectValue 
 } from "../../../../components/ui/select";
 import { Textarea } from "../../../../components/ui/textarea";
+import type { Salon } from "@acme/types";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default async function RequestQuotePage({ params }: PageProps) {
-  // Await the params in Next.js 15
-  const { slug } = await params;
+function SubmitButton() {
+  const { pending } = useFormStatus();
   
-  // Find the salon by slug
-  const salon = await getSalonBySlug(slug);
+  return (
+    <Button 
+      type="submit"
+      size="lg" 
+      className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
+      disabled={pending}
+    >
+      {pending ? "Gönderiliyor..." : "Talebi Gönder"}
+    </Button>
+  );
+}
+
+export default function RequestQuotePage({ params }: PageProps) {
+  const [salon, setSalon] = useState<Salon | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [eventType, setEventType] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+
+  useEffect(() => {
+    async function fetchSalon() {
+      try {
+        const { slug } = await params;
+        const salonData = await getSalonBySlug(slug);
+        setSalon(salonData);
+      } catch (error) {
+        console.error("Error fetching salon:", error);
+        setSalon(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchSalon();
+  }, [params]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
+          <p className="text-foreground/60">Salon bilgileri yükleniyor...</p>
+        </div>
+      </main>
+    );
+  }
 
   // If no salon is found, render 404 page
   if (!salon) {
@@ -46,7 +95,10 @@ export default async function RequestQuotePage({ params }: PageProps) {
 
           {/* Form Section */}
           <div className="max-w-2xl mx-auto">
-            <form className="space-y-8">
+            <form action={createReservation} className="space-y-8">
+              {/* Hidden field for salon ID */}
+              <input type="hidden" name="salonId" value={salon.id} />
+              
               {/* Step 1: Etkinlik Detayları */}
               <div className="space-y-6">
                 <h2 className="text-xl md:text-2xl font-serif font-bold text-foreground mb-4">
@@ -56,45 +108,28 @@ export default async function RequestQuotePage({ params }: PageProps) {
                 {/* Etkinlik Türü */}
                 <div className="space-y-2">
                   <Label htmlFor="event-type" className="font-inter font-medium text-foreground">
-                    Etkinlik Türü
+                    Etkinlik Türü *
                   </Label>
-                  <Select>
+                  <Select name="eventType" value={eventType} onValueChange={setEventType} required>
                     <SelectTrigger id="event-type">
                       <SelectValue placeholder="Etkinlik türünüzü seçin" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="dugun">Düğün</SelectItem>
-                      <SelectItem value="nisan">Nişan</SelectItem>
-                      <SelectItem value="kina">Kına</SelectItem>
-                      <SelectItem value="sobet">Sohbet</SelectItem>
-                      <SelectItem value="dogum-gunu">Doğum Günü</SelectItem>
-                      <SelectItem value="kurumsal">Kurumsal Etkinlik</SelectItem>
-                      <SelectItem value="diger">Diğer</SelectItem>
+                      <SelectItem value="Düğün">Düğün</SelectItem>
+                      <SelectItem value="Nişan">Nişan</SelectItem>
+                      <SelectItem value="Kına">Kına</SelectItem>
+                      <SelectItem value="Sohbet">Sohbet</SelectItem>
+                      <SelectItem value="Doğum Günü">Doğum Günü</SelectItem>
+                      <SelectItem value="Kurumsal Etkinlik">Kurumsal Etkinlik</SelectItem>
+                      <SelectItem value="Diğer">Diğer</SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
-
-                {/* Tahmini Davetli Sayısı */}
-                <div className="space-y-2">
-                  <Label htmlFor="guest-count" className="font-inter font-medium text-foreground">
-                    Tahmini Davetli Sayısı
-                  </Label>
-                  <Input 
-                    id="guest-count"
-                    type="number" 
-                    placeholder="Örn: 150"
-                    min="1"
-                    max={salon.capacity}
-                  />
-                  <p className="text-sm text-foreground/60 font-inter">
-                    Maksimum kapasite: {salon.capacity} kişi
-                  </p>
                 </div>
 
                 {/* İstenilen Dönem */}
                 <div className="space-y-2">
                   <Label className="font-inter font-medium text-foreground">
-                    İstenilen Dönem
+                    İstenilen Dönem *
                   </Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Ay Seçimi */}
@@ -102,7 +137,7 @@ export default async function RequestQuotePage({ params }: PageProps) {
                       <Label htmlFor="month" className="font-inter text-sm text-foreground/80">
                         Ay
                       </Label>
-                      <Select>
+                      <Select name="month" value={month} onValueChange={setMonth} required>
                         <SelectTrigger id="month">
                           <SelectValue placeholder="Ay seçin" />
                         </SelectTrigger>
@@ -128,7 +163,7 @@ export default async function RequestQuotePage({ params }: PageProps) {
                       <Label htmlFor="year" className="font-inter text-sm text-foreground/80">
                         Yıl
                       </Label>
-                      <Select>
+                      <Select name="year" value={year} onValueChange={setYear} required>
                         <SelectTrigger id="year">
                           <SelectValue placeholder="Yıl seçin" />
                         </SelectTrigger>
@@ -153,36 +188,42 @@ export default async function RequestQuotePage({ params }: PageProps) {
                 {/* Ad Soyad */}
                 <div className="space-y-2">
                   <Label htmlFor="full-name" className="font-inter font-medium text-foreground">
-                    Ad Soyad
+                    Ad Soyad *
                   </Label>
                   <Input 
                     id="full-name"
+                    name="customerName"
                     type="text" 
                     placeholder="Adınız ve soyadınız"
+                    required
                   />
                 </div>
 
                 {/* E-posta */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="font-inter font-medium text-foreground">
-                    E-posta Adresiniz
+                    E-posta Adresiniz *
                   </Label>
                   <Input 
                     id="email"
+                    name="customerEmail"
                     type="email" 
                     placeholder="ornek@email.com"
+                    required
                   />
                 </div>
 
                 {/* Telefon */}
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="font-inter font-medium text-foreground">
-                    Telefon Numaranız
+                    Telefon Numaranız *
                   </Label>
                   <Input 
                     id="phone"
+                    name="customerPhone"
                     type="tel" 
                     placeholder="0555 123 45 67"
+                    required
                   />
                 </div>
 
@@ -193,21 +234,19 @@ export default async function RequestQuotePage({ params }: PageProps) {
                   </Label>
                   <Textarea 
                     id="notes"
+                    name="notes"
                     placeholder="Etkinliğiniz hakkında eklemek istediğiniz detaylar, özel istekleriniz..."
                     rows={4}
                   />
+                  <p className="text-sm text-foreground/60 font-inter">
+                    Salon kapasitesi: {salon.capacity} kişi
+                  </p>
                 </div>
               </div>
 
               {/* Submit Button */}
               <div className="pt-6">
-                <Button 
-                  type="submit"
-                  size="lg" 
-                  className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
-                >
-                  Talebi Gönder
-                </Button>
+                <SubmitButton />
               </div>
             </form>
           </div>

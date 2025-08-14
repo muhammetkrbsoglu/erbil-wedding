@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { PrismaClient } from "@acme/db";
 
 // For now, we'll use a simple API call instead of direct Prisma
 // since our API server is working with Express
@@ -204,5 +205,65 @@ export async function deleteSalon(formData: FormData) {
   } catch (error) {
     console.error("Error deleting salon:", error);
     throw new Error("Failed to delete salon");
+  }
+}
+
+const prisma = new PrismaClient();
+
+export async function createReservation(formData: FormData) {
+  "use server";
+
+  // Extract form data
+  const salonId = formData.get("salonId") as string;
+  const customerName = formData.get("customerName") as string;
+  const customerEmail = formData.get("customerEmail") as string;
+  const customerPhone = formData.get("customerPhone") as string;
+  const eventType = formData.get("eventType") as string;
+  const month = formData.get("month") as string;
+  const year = formData.get("year") as string;
+  const notes = formData.get("notes") as string;
+
+  // Validate required fields
+  if (!salonId || !customerName || !customerEmail || !customerPhone || !eventType || !month || !year) {
+    throw new Error("All required fields must be filled");
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(customerEmail)) {
+    throw new Error("Please enter a valid email address");
+  }
+
+  // Create eventDateRange from month and year
+  const monthNames = {
+    "01": "Ocak", "02": "Şubat", "03": "Mart", "04": "Nisan",
+    "05": "Mayıs", "06": "Haziran", "07": "Temmuz", "08": "Ağustos",
+    "09": "Eylül", "10": "Ekim", "11": "Kasım", "12": "Aralık"
+  };
+  const eventDateRange = `${monthNames[month as keyof typeof monthNames]} ${year}`;
+
+  try {
+    // Create reservation in database
+    await prisma.reservation.create({
+      data: {
+        salonId,
+        customerName,
+        customerEmail,
+        customerPhone,
+        eventType,
+        eventDateRange,
+        notes: notes || null,
+        status: "pending", // Default status
+      },
+    });
+
+    // Revalidate the admin reservations page to show new data
+    revalidatePath("/admin/randevular");
+    
+    // Redirect to success page
+    redirect("/randevu-basarili");
+  } catch (error) {
+    console.error("Error creating reservation:", error);
+    throw new Error("Failed to create reservation. Please try again.");
   }
 }
