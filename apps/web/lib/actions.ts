@@ -115,26 +115,29 @@ async function updateSalonInAPI(salonData: {
   }
 }
 
-export async function updateSalon(formData: FormData) {
+export async function updateSalon({
+  id,
+  name,
+  capacity,
+  imageUrl,
+}: {
+  id: string;
+  name: string;
+  capacity: number;
+  imageUrl: string;
+}) {
   // Check authentication
   const { userId } = await auth();
   if (!userId) {
     throw new Error("Unauthorized");
   }
 
-  // Extract form data
-  const id = formData.get("id") as string;
-  const name = formData.get("name") as string;
-  const capacityStr = formData.get("capacity") as string;
-  const imageUrl = formData.get("imageUrl") as string;
-
   // Validate required fields
-  if (!id || !name || !capacityStr || !imageUrl) {
+  if (!id || !name || !capacity || !imageUrl) {
     throw new Error("All fields are required");
   }
 
-  const capacity = parseInt(capacityStr, 10);
-  if (isNaN(capacity) || capacity <= 0) {
+  if (capacity <= 0) {
     throw new Error("Capacity must be a positive number");
   }
 
