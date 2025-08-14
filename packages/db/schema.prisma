@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@acme/db"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Salon {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  capacity  Int
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reservations Reservation[]
+
+  @@map("salons")
+}
+
+model Reservation {
+  id             String   @id @default(cuid())
+  customerName   String
+  customerEmail  String
+  customerPhone  String
+  eventDateRange String
+  eventType      String
+  notes          String?
+  status         String   @default("pending")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  salon   Salon  @relation(fields: [salonId], references: [id])
+  salonId String
+}
