@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 // ...existing code...
 
@@ -47,9 +48,9 @@ export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const navigationItems = [
-    { label: "Salonlarımız", href: "/salons" },
-    { label: "Hakkımızda", href: "/about" },
-    { label: "İletişim", href: "/contact" }
+    { label: "Salonlarımız", href: "/#salonlar" },
+    { label: "Hakkımızda", href: "/hakkimizda" },
+    { label: "İletişim", href: "/iletisim" }
   ];
 
   return (
@@ -65,21 +66,24 @@ export const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigationItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-sm font-medium text-foreground hover:text-accent transition-colors"
+              scroll={item.href.startsWith('/#') ? false : undefined}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Authentication & CTA */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="default" size="default">
-            Randevu Talep Et
-          </Button>
+          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+            <Button variant="default" size="default">
+              Randevu Talep Et
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -100,19 +104,22 @@ export const Header: React.FC = () => {
         <div className="md:hidden border-t bg-background">
           <div className="container mx-auto px-4 py-4 space-y-4">
             {navigationItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
+                scroll={item.href.startsWith('/#') ? false : undefined}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <div className="pt-4 space-y-2">
-              <Button variant="default" size="default" className="w-full">
-                Randevu Talep Et
-              </Button>
+              <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+                <Button variant="default" size="default" className="w-full">
+                  Randevu Talep Et
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

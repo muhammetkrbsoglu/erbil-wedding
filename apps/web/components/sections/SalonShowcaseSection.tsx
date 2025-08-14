@@ -5,7 +5,7 @@ export const SalonShowcaseSection = async () => {
   const salons = await getSalons();
 
   return (
-    <section className="py-20 md:py-24 bg-background">
+    <section id="salonlar" className="py-20 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
