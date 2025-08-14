@@ -43,9 +43,9 @@ export default function AdminDashboardLayout({
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 p-8">
+      <div className="flex-1 p-8">
         {children}
-      </main>
+      </div>
     </div>
   );
 }
