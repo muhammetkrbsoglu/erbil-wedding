@@ -20,6 +20,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Erbil Wedding",
   description: "Hayallerinizdeki düğün için en özel mekanlar.",
+  manifest: "/manifest.json",
+  themeColor: "#000000",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  icons: [
+    { rel: "icon", url: "/icons/favicon.ico" },
+    { rel: "apple-touch-icon", url: "/icons/icon-192x192.png" }
+  ]
 };
 
 export default function RootLayout({

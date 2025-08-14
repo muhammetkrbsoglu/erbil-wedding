@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import { prisma } from "~/lib/db";
 import { UpdateStatusDropdown } from "./_components/update-status-dropdown";
 import {
   Table,
@@ -7,10 +7,24 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "~/components/ui/table";
+
+interface Salon {
+  name: string;
+}
+
+interface Reservation {
+  id: string;
+  customerName: string;
+  customerPhone: string;
+  salon: Salon;
+  status: 'confirmed' | 'pending' | 'cancelled';
+  createdAt: Date;
+  notes: string | null;
+}
 
 export default async function RandevularPage() {
-  const reservations = await prisma.reservation.findMany({
+  const reservations: Reservation[] = await prisma.reservation.findMany({
     include: {
       salon: true,
     },

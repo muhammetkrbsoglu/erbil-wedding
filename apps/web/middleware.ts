@@ -4,11 +4,19 @@ import { NextResponse } from 'next/server';
 const isPublicRoute = createRouteMatcher([
   '/',
   '/salonlar/(.*)',
+  '/sss',
+  '/iletisim',
+  '/hakkimizda',
   '/randevu-basarili',
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/admin-giris(.*)',
-  '/api/webhook/clerk'
+  '/api/webhook/clerk',
+  '/_next/(.*)',
+  '/favicon.ico',
+  '/manifest.json',
+  '/robots.txt',
+  '/sitemap.xml'
 ]);
 
 export default clerkMiddleware(async (auth, request) => {

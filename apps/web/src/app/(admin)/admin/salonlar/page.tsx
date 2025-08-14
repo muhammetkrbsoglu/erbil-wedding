@@ -1,6 +1,6 @@
-import { prisma } from "@/lib/db";
-import { Button } from "@/components/ui/button";
-import type { Salon } from "@/lib/schemas/salon";
+import { prisma } from "~/lib/db";
+import { Button } from "~/components/ui/button";
+import type { Salon } from "../../lib/schemas/salon";
 import { CreateSalonDialog } from "./_components/create-salon-dialog";
 import { EditSalonDialog } from "./_components/edit-salon-dialog";
 import { DeleteSalonDialog } from "./_components/delete-salon-dialog";

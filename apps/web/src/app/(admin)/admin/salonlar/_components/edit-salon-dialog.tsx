@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
-import { salonSchema } from "@/lib/schemas/salon";
+import { salonSchema } from "../../../lib/schemas/salon";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import type { Salon } from "@/lib/schemas/salon";
+import type { Salon } from "../../../lib/schemas/salon";
 
 const editSalonSchema = salonSchema.pick({
   name: true,

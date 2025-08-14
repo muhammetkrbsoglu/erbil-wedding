@@ -31,8 +31,9 @@ model Reservation {
   customerName   String
   customerEmail  String
   customerPhone  String
-  eventDateRange String
+  eventDate      DateTime
   eventType      String
+  guestCount     Int
   notes          String?
   status         String   @default("pending")
   createdAt      DateTime @default(now())
@@ -40,4 +41,39 @@ model Reservation {
 
   salon   Salon  @relation(fields: [salonId], references: [id])
   salonId String
+
+  tasks WeddingTask[]
+
+  @@index([eventDate])
+  @@index([status])
+}
+
+model WeddingTask {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  reservationId String
+
+  @@index([dueDate])
+  @@index([status])
+}
+
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([order])
 }

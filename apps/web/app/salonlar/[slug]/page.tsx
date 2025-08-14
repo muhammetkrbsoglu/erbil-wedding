@@ -2,15 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Users, Car, Wifi, Utensils } from "lucide-react";
-import { getSalonBySlug } from "../../../lib/api";
-import { Button } from "../../../components/ui/button";
+import { getSalonBySlug } from "@/src/lib/api";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../../../components/ui/carousel";
+} from "@/components/ui/carousel";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
