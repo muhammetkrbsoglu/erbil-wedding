@@ -24,18 +24,22 @@
     "@acme/db": "*",
     "@acme/types": "*",
     "@clerk/clerk-sdk-node": "^4.13.23",
+    "@inquirer/checkbox": "^4.2.1",
+    "@inquirer/prompts": "^7.8.2",
     "@isaacs/brace-expansion": "^5.0.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^5.22.0",
+    "cli-table3": "^0.6.5",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "imagekit": "^6.0.0",
     "node-emoji": "^1.11.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "tree-kill": "^1.2.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
