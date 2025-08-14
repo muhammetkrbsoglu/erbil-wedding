@@ -1,20 +1,37 @@
 
+
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 const isPublicRoute = createRouteMatcher([
-  '/', // Homepage
-  '/salonlar/(.*)', // All salon detail and appointment pages
-  '/randevu-basarili', // The "thank you" page
-  '/sign-in(.*)', // The sign-in page
-  '/sign-up(.*)', // The sign-up page
-]);
-const isProtectedRoute = createRouteMatcher([
-  '/admin(.*)',
+  '/',
+  '/salonlar/(.*)',
+  '/randevu-basarili',
+  '/sign-in(.*)',
+  '/sign-up(.*)',
+  '/admin-giris(.*)', // Admin login and all its children are public
 ]);
 
-export default clerkMiddleware((auth, req) => {
+const isProtectedRoute = createRouteMatcher([
+  '/admin',
+  '/admin/(.*)', // Admin panel routes
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  // Eğer rota public ise veya admin-giris sayfasına gidiyorsa, koruma uygulamadan geç
+  if (isPublicRoute(req)) {
+    return;
+  }
+
+  // Eğer rota korumalı ise, authentication gerektir
   if (isProtectedRoute(req)) {
-    auth().protect(); // This will redirect unauthenticated users to the sign-in URL specified in your env variables or default to a Clerk-hosted page if not set. We will set this in the next step.
+    try {
+      const session = await auth();
+      if (!session.userId) {
+        return Response.redirect(new URL('/admin-giris', req.url));
+      }
+    } catch (err) {
+      return Response.redirect(new URL('/admin-giris', req.url));
+    }
   }
 });
 
