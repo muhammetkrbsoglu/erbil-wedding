@@ -26,6 +26,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  console.log("CLERK KEY:", process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -35,7 +36,7 @@ export default function RootLayout({
           playfair.variable
         )}
       >
-        <ClerkProvider>
+  <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
           <Header />
           <main>{children}</main>
           <Footer />

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Menu, X } from "lucide-react";
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
+// ...existing code...
 
 // We'll need to import these from the web app since they have the shadcn/ui components
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -77,25 +77,9 @@ export const Header: React.FC = () => {
 
         {/* Authentication & CTA */}
         <div className="hidden md:flex items-center space-x-4">
-          <SignedOut>
-            <SignInButton mode="modal">
-              <Button variant="outline" size="default">
-                Giriş Yap
-              </Button>
-            </SignInButton>
-            <Button variant="default" size="default">
-              Randevu Talep Et
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            <a 
-              href="/admin"
-              className="text-sm font-medium text-foreground hover:text-accent transition-colors"
-            >
-              Admin Panel
-            </a>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          <Button variant="default" size="default">
+            Randevu Talep Et
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -125,31 +109,10 @@ export const Header: React.FC = () => {
                 {item.label}
               </a>
             ))}
-            <SignedIn>
-              <a
-                href="/admin"
-                className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Admin Panel
-              </a>
-            </SignedIn>
             <div className="pt-4 space-y-2">
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <Button variant="outline" size="default" className="w-full">
-                    Giriş Yap
-                  </Button>
-                </SignInButton>
-                <Button variant="default" size="default" className="w-full">
-                  Randevu Talep Et
-                </Button>
-              </SignedOut>
-              <SignedIn>
-                <div className="flex items-center justify-center">
-                  <UserButton afterSignOutUrl="/" />
-                </div>
-              </SignedIn>
+              <Button variant="default" size="default" className="w-full">
+                Randevu Talep Et
+              </Button>
             </div>
           </div>
         </div>
