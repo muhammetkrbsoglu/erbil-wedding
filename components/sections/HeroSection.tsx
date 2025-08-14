@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { Button } from "../../components/ui/button";
+
 export const HeroSection = () => {
   return (
     <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary/20">
@@ -10,12 +13,16 @@ export const HeroSection = () => {
           Her detayı özenle planlanmış, mükemmel düğün deneyimi için biz buradayız.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 hover:shadow-lg h-11 px-8">
-            Salonları Keşfedin
-          </button>
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors border border-primary bg-background hover:bg-primary hover:text-primary-foreground h-11 px-8">
-            Randevu Talep Et
-          </button>
+          <Link href="/#salonlar" scroll={false}>
+            <Button variant="default" size="lg">
+              Salonları Keşfedin
+            </Button>
+          </Link>
+          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+            <Button variant="outline" size="lg">
+              Randevu Talep Et
+            </Button>
+          </Link>
         </div>
       </div>
       
