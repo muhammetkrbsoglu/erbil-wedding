@@ -1,0 +1,107 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../../../../components/ui/table";
+import { Badge } from "../../../../components/ui/badge";
+import { PrismaClient } from "@acme/db";
+import type { Reservation, Salon } from "@acme/types";
+
+const prisma = new PrismaClient();
+
+type ReservationWithSalon = Omit<Reservation, 'createdAt' | 'updatedAt'> & {
+  createdAt: Date;
+  updatedAt: Date;
+  salon: Omit<Salon, 'createdAt' | 'updatedAt'> & {
+    createdAt: Date;
+    updatedAt: Date;
+  };
+};
+
+async function getReservations() {
+  return await prisma.reservation.findMany({
+    include: {
+      salon: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+}
+
+function getStatusBadge(status: string) {
+  switch (status) {
+    case 'pending':
+      return <Badge variant="warning">Beklemede</Badge>;
+    case 'confirmed':
+      return <Badge variant="success">Onaylandı</Badge>;
+    case 'cancelled':
+      return <Badge variant="destructive">İptal Edildi</Badge>;
+    default:
+      return <Badge variant="outline">{status}</Badge>;
+  }
+}
+
+export default async function AdminAppointmentsPage() {
+  const reservations = await getReservations();
+
+  return (
+    <div className="space-y-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl md:text-3xl font-bold font-playfair text-foreground">
+          Randevu Taleplerini Yönet
+        </h1>
+      </div>
+
+      <div className="bg-card border rounded-lg overflow-hidden">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Müşteri Adı</TableHead>
+              <TableHead>E-posta</TableHead>
+              <TableHead>Telefon</TableHead>
+              <TableHead>İstenen Tarih</TableHead>
+              <TableHead>Etkinlik Türü</TableHead>
+              <TableHead>Salon Adı</TableHead>
+              <TableHead>Durum</TableHead>
+              <TableHead>Talep Tarihi</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {reservations.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                  Henüz randevu talebi bulunmuyor.
+                </TableCell>
+              </TableRow>
+            ) : (
+              reservations.map((reservation) => (
+                <TableRow key={reservation.id}>
+                  <TableCell className="font-medium">{reservation.customerName}</TableCell>
+                  <TableCell>{reservation.customerEmail}</TableCell>
+                  <TableCell>{reservation.customerPhone}</TableCell>
+                  <TableCell>{reservation.eventDateRange}</TableCell>
+                  <TableCell>{reservation.eventType}</TableCell>
+                  <TableCell>{reservation.salon.name}</TableCell>
+                  <TableCell>{getStatusBadge(reservation.status)}</TableCell>
+                  <TableCell>
+                    {new Date(reservation.createdAt).toLocaleDateString('tr-TR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}

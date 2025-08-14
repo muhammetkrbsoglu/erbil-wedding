@@ -27,7 +27,7 @@ export default function AdminDashboardLayout({
               Salonlar
             </a>
             <a
-              href="/admin/bookings"
+              href="/admin/randevular"
               className="flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
             >
               Randevular
