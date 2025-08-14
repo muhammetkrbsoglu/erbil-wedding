@@ -1,5 +1,3 @@
-
-
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 const isPublicRoute = createRouteMatcher([
@@ -16,22 +14,15 @@ const isProtectedRoute = createRouteMatcher([
   '/admin/(.*)', // Admin panel routes
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
-  // Eğer rota public ise veya admin-giris sayfasına gidiyorsa, koruma uygulamadan geç
+export default clerkMiddleware((auth, req) => {
+  // Public route ise hiçbir işlem yapma
   if (isPublicRoute(req)) {
     return;
   }
 
-  // Eğer rota korumalı ise, authentication gerektir
+  // Sadece /admin ve alt rotalar korumalı
   if (isProtectedRoute(req)) {
-    try {
-      const session = await auth();
-      if (!session.userId) {
-        return Response.redirect(new URL('/admin-giris', req.url));
-      }
-    } catch (err) {
-      return Response.redirect(new URL('/admin-giris', req.url));
-    }
+    auth.protect();
   }
 });
 
