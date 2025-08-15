@@ -1,6 +1,10 @@
 import * as dotenv from 'dotenv';
-import { join } from 'path';
-dotenv.config({ path: join(__dirname, '../.env') });
+import { resolve } from 'path';
+
+// İlk olarak dotenv'yi yükle
+dotenv.config({
+  path: resolve(__dirname, '../.env'),
+});
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';

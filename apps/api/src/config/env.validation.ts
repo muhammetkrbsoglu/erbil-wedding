@@ -13,7 +13,7 @@ enum Environment {
 }
 
 class EnvironmentVariables {
-  @Transform(({ value }) => parseInt(value, 10))
+  @Transform(({ value }) => Number(value))
   @IsNumber()
   PORT: number;
 
@@ -29,15 +29,13 @@ class EnvironmentVariables {
   @IsString()
   CLERK_PUBLISHABLE_KEY: string;
 
-  @Transform(({ value }) => parseInt(value, 10))
+  @Transform(({ value }) => Number(value))
   @IsNumber()
   RATE_LIMIT_TTL: number;
 
-  @Transform(({ value }) => parseInt(value, 10))
+  @Transform(({ value }) => Number(value))
   @IsNumber()
   RATE_LIMIT_MAX: number;
-
-
 
   @IsString()
   IMAGEKIT_PUBLIC_KEY: string;
@@ -53,29 +51,34 @@ class EnvironmentVariables {
 }
 
 export function validate(config: Record<string, unknown>) {
-  // Debug için config'i görelim
-  console.log('Environment variables received:', config);
-  
-  const validatedConfig = plainToInstance(EnvironmentVariables, config, {
-    enableImplicitConversion: true,
-  });
-
-  const errors = validateSync(validatedConfig, {
-    skipMissingProperties: false,
-  });
-
-  if (errors.length > 0) {
-    const errorMessages = errors.map((error) => {
-      const constraints = error.constraints
-        ? Object.values(error.constraints).join(', ')
-        : 'Unknown error';
-      return `${error.property}: ${constraints}`;
+  console.log('Raw config:', config);
+  try {
+    const validatedConfig = plainToInstance(EnvironmentVariables, config, {
+      enableImplicitConversion: true,
     });
+    console.log('Transformed config:', validatedConfig);
     
-    throw new Error(
-      `Environment validation failed:\n${errorMessages.join('\n')}`
-    );
-  }
+    const errors = validateSync(validatedConfig, {
+      skipMissingProperties: false,
+    });
 
-  return validatedConfig;
+    if (errors.length > 0) {
+      console.log('Validation errors:', errors);
+      const errorMessages = errors.map((error) => {
+        const constraints = error.constraints
+          ? Object.values(error.constraints).join(', ')
+          : 'Unknown error';
+        return `${error.property}: ${constraints}`;
+      });
+      
+      throw new Error(
+        `Environment validation failed:\n${errorMessages.join('\n')}`
+      );
+    }
+
+    return validatedConfig;
+  } catch (error) {
+    console.error('Error during validation:', error);
+    throw error;
+  }
 }
