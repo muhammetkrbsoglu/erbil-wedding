@@ -1,55 +1,229 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --wedding-primary: #f5ebe0; /* Sıcak Fildişi */
+  --wedding-secondary: #d5b4a1; /* Yumuşak Boz Kahve */
+  --wedding-accent: #c08552; /* Mat Altın/Şampanya */
+  --wedding-neutral: #4e443f; /* Koyu Kömür Kahve */
+  --wedding-text: #312b27; /* En Koyu Kahve */
+
+  --background: #f5ebe0;
+  --foreground: #312b27;
+  --card: #f5ebe0;
+  --card-foreground: #312b27;
+  --popover: #f5ebe0;
+  --popover-foreground: #312b27;
+  --primary: #c08552;
+  --primary-foreground: #f5ebe0;
+  --secondary: #d5b4a1;
+  --secondary-foreground: #312b27;
+  --muted: #d5b4a1;
+  --muted-foreground: #4e443f;
+  --accent: #c08552;
+  --accent-foreground: #f5ebe0;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: #f5ebe0;
+  --sidebar-foreground: #312b27;
+  --sidebar-primary: #c08552;
+  --sidebar-primary-foreground: #f5ebe0;
+  --sidebar-accent: #c08552;
+  --sidebar-accent-foreground: #f5ebe0;
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Premium animation variables */
+  --animation-duration-fast: 0.2s;
+  --animation-duration-normal: 0.3s;
+  --animation-duration-slow: 0.5s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Wedding-specific utility classes eklendi */
+.bg-wedding-primary {
+  background-color: var(--wedding-primary);
+}
+.bg-wedding-secondary {
+  background-color: var(--wedding-secondary);
+}
+.bg-wedding-accent {
+  background-color: var(--wedding-accent);
+}
+.text-wedding-text {
+  color: var(--wedding-text);
+}
+.text-wedding-neutral {
+  color: var(--wedding-neutral);
+}
+.border-wedding-secondary {
+  border-color: var(--wedding-secondary);
+}
 
 @layer base {
-  :root {
-    --background: 248 246 244; /* #F8F6F4 */
-    --foreground: 54 69 79;   /* #36454F */
-    
-    --card: 255 255 255;
-    --card-foreground: 54 69 79;
-    
-    --popover: 255 255 255;
-    --popover-foreground: 54 69 79;
-    
-    --primary: 212 175 55;      /* Champagne Gold */
-    --primary-foreground: 54 69 79;
-    
-    --secondary: 211 197 188;   /* Beige */
-    --secondary-foreground: 54 69 79;
-
-    --accent: 46 83 57;         /* Emerald Green */
-    --accent-foreground: 248 246 244;
-    
-    --border: 234 234 234;
-    --input: 234 234 234;
-
-    --ring: 46 83 57;
-    
-    --radius: 0.5rem;
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* Premium smooth scroll ve animasyon sistemi eklendi */
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Header yüksekliği için offset */
 }
 
-body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  font-family: var(--font-inter), Inter, sans-serif;
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Premium scroll animations */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--animation-duration-slow) var(--animation-easing), transform var(--animation-duration-slow)
+    var(--animation-easing);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.scroll-fade-in.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation delays */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+
+/* Premium hover effects */
+.premium-hover {
+  transition: all var(--animation-duration-normal) var(--animation-easing);
+}
+
+.premium-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

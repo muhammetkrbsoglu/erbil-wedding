@@ -19,16 +19,15 @@
     "node": ">=18"
   },
   "packageManager": "npm@10.2.4",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": ["apps/*", "packages/*"],
   "dependencies": {
     "@nestjs/throttler": "^6.4.0",
     "@prisma/client": "^6.14.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "@googlemaps/react-wrapper": "^1.1.42",
+    "@types/google.maps": "^3.55.12"
   }
 }

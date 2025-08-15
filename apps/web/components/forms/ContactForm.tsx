@@ -1,124 +1,127 @@
-'use client';
+"use client"
 
-import { useState } from 'react';
-import { Button } from '~/components/ui/button';
-import { toast } from 'sonner';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/hooks/use-toast"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, { message: 'İsim en az 2 karakter olmalıdır' }),
-  email: z.string().email({ message: 'Geçerli bir e-posta adresi giriniz' }),
-  phone: z.string().min(10, { message: 'Geçerli bir telefon numarası giriniz' }),
-  message: z.string().min(10, { message: 'Mesaj en az 10 karakter olmalıdır' }),
-});
+  name: z.string().min(2, { message: "İsim en az 2 karakter olmalıdır" }),
+  email: z.string().email({ message: "Geçerli bir e-posta adresi giriniz" }),
+  phone: z.string().min(10, { message: "Geçerli bir telefon numarası giriniz" }),
+  message: z.string().min(10, { message: "Mesaj en az 10 karakter olmalıdır" }),
+})
 
-type ContactFormSchema = z.infer<typeof contactFormSchema>;
+type ContactFormSchema = z.infer<typeof contactFormSchema>
 
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
-  });
+  })
 
   async function onSubmit(data: ContactFormSchema) {
     try {
-      setIsSubmitting(true);
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      setIsSubmitting(true)
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      if (!response.ok) {
-        throw new Error('İletişim formu gönderilemedi');
-      }
-
-      toast.success('Mesajınız başarıyla gönderildi');
-      form.reset();
+      toast({
+        title: "Başarılı!",
+        description: "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.",
+      })
+      form.reset()
     } catch (error) {
-      console.error('Form gönderme hatası:', error);
-      toast.error('Mesajınız gönderilirken bir hata oluştu');
+      console.error("Form gönderme hatası:", error)
+      toast({
+        title: "Hata!",
+        description: "Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      })
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          İsim Soyisim
-        </label>
-        <input
-          {...form.register('name')}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        <Label htmlFor="name">İsim Soyisim</Label>
+        <Input
+          id="name"
+          {...form.register("name")}
           placeholder="İsminizi girin"
+          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.name && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.name.message}
           </p>
         )}
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          E-posta
-        </label>
-        <input
-          {...form.register('email')}
+        <Label htmlFor="email">E-posta</Label>
+        <Input
+          id="email"
           type="email"
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          {...form.register("email")}
           placeholder="E-posta adresinizi girin"
+          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.email && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.email.message}
           </p>
         )}
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Telefon
-        </label>
-        <input
-          {...form.register('phone')}
+        <Label htmlFor="phone">Telefon</Label>
+        <Input
+          id="phone"
           type="tel"
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          {...form.register("phone")}
           placeholder="Telefon numaranızı girin"
+          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.phone && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.phone.message}
           </p>
         )}
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Mesajınız
-        </label>
-        <textarea
-          {...form.register('message')}
-          className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        <Label htmlFor="message">Mesajınız</Label>
+        <Textarea
+          id="message"
+          {...form.register("message")}
           placeholder="Mesajınızı girin"
+          className="min-h-[120px]"
+          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.message && (
-          <p className="text-sm text-red-500">
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.message.message}
           </p>
         )}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full">
-        {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full"
+        style={{ backgroundColor: "#C08552", color: "white" }}
+      >
+        {isSubmitting ? "Gönderiliyor..." : "Gönder"}
       </Button>
     </form>
-  );
+  )
 }

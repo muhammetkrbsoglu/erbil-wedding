@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "../ui/button"
 
 export const CTASection = () => {
   return (
@@ -9,8 +9,8 @@ export const CTASection = () => {
             <span className="font-playfair">Hayalinizdeki Düğünü Planlamaya Başlayın</span>
           </h2>
           <p className="text-lg text-foreground/80 mb-8 font-inter">
-            Profesyonel ekibimizle tanışmak, salonlarımızı yakından görmek ve size özel tekliflerimizi
-            öğrenmek için ilk adımı atın.
+            Profesyonel ekibimizle tanışmak, salonlarımızı yakından görmek ve size özel tekliflerimizi öğrenmek için ilk
+            adımı atın.
           </p>
 
           <Button size="lg" className="">
@@ -19,5 +19,5 @@ export const CTASection = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

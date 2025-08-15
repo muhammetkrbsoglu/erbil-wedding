@@ -77,7 +77,7 @@ export default async function AdminAppointmentsPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              reservations.map((reservation) => (
+              reservations.map((reservation: ReservationWithSalon) => (
                 <TableRow key={reservation.id}>
                   <TableCell className="font-medium">{reservation.customerName}</TableCell>
                   <TableCell>{reservation.customerEmail}</TableCell>

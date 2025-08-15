@@ -1,1 +1,1 @@
-export type { Salon } from "@acme/types";
+export type { Salon } from "@/lib/types"

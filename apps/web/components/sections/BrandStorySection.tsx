@@ -1,5 +1,6 @@
-import Image from "next/image";
-import { Button } from "../../components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "../ui/button"
 
 export const BrandStorySection = () => {
   return (
@@ -33,31 +34,33 @@ export const BrandStorySection = () => {
             {/* Body Text */}
             <div className="space-y-6">
               <p className="text-lg font-inter text-foreground/80 leading-relaxed">
-                Yılların deneyimi ve tutkuyla, her çiftin özel gününü unutulmaz kılmak için buradayız. 
-                Erbil Wedding olarak, sadece bir düğün organizasyonu değil, hayatınızın en özel anını 
-                mükemmelleştirme sanatını sunuyoruz.
+                Yılların deneyimi ve tutkuyla, her çiftin özel gününü unutulmaz kılmak için buradayız. Erbil Wedding
+                olarak, sadece bir düğün organizasyonu değil, hayatınızın en özel anını mükemmelleştirme sanatını
+                sunuyoruz.
               </p>
-              
+
               <p className="text-lg font-inter text-foreground/80 leading-relaxed">
-                İstanbul'un en seçkin mekanlarında, profesyonel ekibimizle birlikte, hayalinizdeki 
-                düğünü gerçeğe dönüştürüyoruz. Her detay, her an, sizin için özel. Zarafetin ve 
-                mükemmeliyetin buluştuğu noktada, size unutulmaz bir deneyim sunmak için varız.
+                İstanbul'un en seçkin mekanlarında, profesyonel ekibimizle birlikte, hayalinizdeki düğünü gerçeğe
+                dönüştürüyoruz. Her detay, her an, sizin için özel. Zarafetin ve mükemmeliyetin buluştuğu noktada, size
+                unutulmaz bir deneyim sunmak için varız.
               </p>
             </div>
 
             {/* CTA Button */}
             <div className="pt-4">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="font-inter font-medium"
-              >
-                Hikayemizi Keşfedin
-              </Button>
+              <Link href="/hikayemiz">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="font-inter font-medium bg-transparent hover:bg-accent hover:text-white transition-all duration-300 hover:scale-105"
+                >
+                  Hikayemizi Keşfedin
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
