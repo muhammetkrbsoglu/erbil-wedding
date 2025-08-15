@@ -70,7 +70,7 @@ export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const navigationItems = [
-    { label: "Salonlarımız", href: "/salons" },
+    { label: "Salonlarımız", href: "/salonlar" },
     { label: "Hakkımızda", href: "/about" },
     { label: "İletişim", href: "/contact" }
   ];
