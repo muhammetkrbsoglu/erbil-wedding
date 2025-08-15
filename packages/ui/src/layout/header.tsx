@@ -3,6 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "../components/ui/navigation-menu";
 // ...existing code...
 
 // We'll need to import these from the web app since they have the shadcn/ui components
@@ -44,45 +51,43 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export const Header: React.FC = () => {
+export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const navigationItems = [
-    { label: "Salonlarımız", href: "/#salonlar" },
-    { label: "Hakkımızda", href: "/hakkimizda" },
-    { label: "İletişim", href: "/iletisim" }
-  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <div className="flex items-center">
-          <h1 className="text-2xl font-serif font-bold text-foreground">
-            <span className="font-playfair">Erbil Wedding</span>
-          </h1>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-foreground hover:text-accent transition-colors"
-              scroll={item.href.startsWith('/#') ? false : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Authentication & CTA */}
-        <div className="hidden md:flex items-center space-x-4">
+      <div className="container flex h-16 items-center">
+        <Link href="/" className="mr-6 flex items-center space-x-2">
+          <span className="font-bold font-serif">Erbil Wedding</span>
+        </Link>
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <Link href="/#salonlar" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Salonlarımız
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/hakkimizda" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Hakkımızda
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/iletisim" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  İletişim
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <div className="flex flex-1 items-center justify-end space-x-4">
           <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
-            <Button variant="default" size="default">
-              Randevu Talep Et
-            </Button>
+            <Button>Randevu Talep Et</Button>
           </Link>
         </div>
 
@@ -103,17 +108,27 @@ export const Header: React.FC = () => {
       {isOpen && (
         <div className="md:hidden border-t bg-background">
           <div className="container mx-auto px-4 py-4 space-y-4">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
-                scroll={item.href.startsWith('/#') ? false : undefined}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/#salonlar"
+              className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Salonlarımız
+            </Link>
+            <Link
+              href="/hakkimizda"
+              className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Hakkımızda
+            </Link>
+            <Link
+              href="/iletisim"
+              className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              İletişim
+            </Link>
             <div className="pt-4 space-y-2">
               <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
                 <Button variant="default" size="default" className="w-full">

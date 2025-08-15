@@ -2,8 +2,14 @@
 
 import React from "react";
 import { Menu, X } from "lucide-react";
-
-// We'll need to import these from the web app since they have the shadcn/ui components
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "../packages/ui/src/components/ui/navigation-menu";
+import Link from "next/link";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline" | "ghost";
   size?: "default" | "sm" | "lg";
@@ -70,29 +76,35 @@ export const Header: React.FC = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <div className="flex items-center">
-          <h1 className="text-2xl font-serif font-bold text-foreground">
+          <Link href="/" className="text-2xl font-serif font-bold text-foreground">
             <span className="font-playfair">Erbil Wedding</span>
-          </h1>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navigationItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-foreground hover:text-accent transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="hidden md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navigationItems.map((item) => (
+                <NavigationMenuItem key={item.href}>
+                  <Link href={item.href} legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      {item.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
 
         {/* CTA Button */}
         <div className="hidden md:flex">
-          <Button variant="default" size="default">
-            Randevu Talep Et
-          </Button>
+          <Link href="/randevu">
+            <Button variant="default" size="default">
+              Randevu Talep Et
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -113,19 +125,21 @@ export const Header: React.FC = () => {
         <div className="md:hidden border-t bg-background">
           <div className="container mx-auto px-4 py-4 space-y-4">
             {navigationItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <div className="pt-4">
-              <Button variant="default" size="default" className="w-full">
-                Randevu Talep Et
-              </Button>
+              <Link href="/randevu" className="block w-full">
+                <Button variant="default" size="default" className="w-full">
+                  Randevu Talep Et
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
