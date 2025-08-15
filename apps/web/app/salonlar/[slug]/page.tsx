@@ -60,7 +60,6 @@ export default async function SalonDetailPage({ params }: PageProps) {
           <CarouselNext className="right-6" />
         </Carousel>
       </section>
-
       {/* Main Content Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
@@ -165,7 +164,7 @@ export default async function SalonDetailPage({ params }: PageProps) {
                     </p>
                   </div>
                   
-                  <Link href={`/salonlar/${slug}/randevu-al`}>
+                  <Link href={`/salonlar/${slug}/randevu-al`} legacyBehavior>
                     <Button 
                       size="lg" 
                       className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"

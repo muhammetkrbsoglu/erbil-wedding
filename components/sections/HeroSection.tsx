@@ -13,19 +13,18 @@ export const HeroSection = () => {
           Her detayı özenle planlanmış, mükemmel düğün deneyimi için biz buradayız.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/#salonlar" scroll={false}>
+          <Link href="/#salonlar" scroll={false} legacyBehavior>
             <Button variant="default" size="lg">
               Salonları Keşfedin
             </Button>
           </Link>
-          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" legacyBehavior>
             <Button variant="outline" size="lg">
               Randevu Talep Et
             </Button>
           </Link>
         </div>
       </div>
-      
       {/* Placeholder for future video background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-secondary/10 to-primary/10" />
     </section>

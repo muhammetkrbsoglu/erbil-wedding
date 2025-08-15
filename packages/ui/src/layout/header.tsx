@@ -57,7 +57,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
+        <Link href="/" className="mr-6 flex items-center space-x-2" legacyBehavior>
           <span className="font-bold font-serif">Erbil Wedding</span>
         </Link>
         <NavigationMenu className="hidden md:flex">
@@ -86,7 +86,7 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" legacyBehavior>
             <Button>Randevu Talep Et</Button>
           </Link>
         </div>
@@ -103,7 +103,6 @@ export function Header() {
           </Button>
         </div>
       </div>
-
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden border-t bg-background">
@@ -130,7 +129,7 @@ export function Header() {
               İletişim
             </Link>
             <div className="pt-4 space-y-2">
-              <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al">
+              <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" legacyBehavior>
                 <Button variant="default" size="default" className="w-full">
                   Randevu Talep Et
                 </Button>

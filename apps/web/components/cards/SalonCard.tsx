@@ -7,7 +7,7 @@ import type { Salon } from "@acme/types";
 export const SalonCard = ({ salon }: { salon: Salon }) => {
   const { imageUrl, name, capacity, slug } = salon;
   return (
-    <Link href={`/salonlar/${slug}`} className="block group">
+    <Link href={`/salonlar/${slug}`} className="block group" legacyBehavior>
       <div className="border border-border rounded-lg bg-card transition-all duration-300 hover:shadow-xl overflow-hidden">
         {/* Image Area */}
         <div className="relative h-64 overflow-hidden">

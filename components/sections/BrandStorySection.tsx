@@ -20,7 +20,7 @@ export const BrandStorySection = () => {
               hayalinizdeki düğünü gerçeğe dönüştürüyoruz. Her detay, her an, sizin için özel.
             </p>
           </div>
-          <Link href="/hakkimizda">
+          <Link href="/hakkimizda" legacyBehavior>
             <Button variant="outline" size="lg">
               Hikayemizi Keşfedin
             </Button>

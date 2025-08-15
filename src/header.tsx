@@ -102,7 +102,7 @@ export const Header: React.FC = () => {
 
         {/* CTA Button */}
         <div className="hidden md:flex">
-          <Link href="/randevu">
+          <Link href="/randevu" className="block">
             <Button variant="default" size="default">
               Randevu Talep Et
             </Button>
@@ -121,7 +121,6 @@ export const Header: React.FC = () => {
           </Button>
         </div>
       </div>
-
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden border-t bg-background">
