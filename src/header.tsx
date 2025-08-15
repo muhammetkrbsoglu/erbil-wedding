@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
@@ -69,8 +69,45 @@ ListItem.displayName = "ListItem";
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  useEffect(() => {
+    // URL'de #salonlar hash'i varsa smooth scroll yap
+    if (window.location.hash === "#salonlar") {
+      setTimeout(() => {
+        const element = document.getElementById("salonlar");
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, 100); // Sayfanın tam yüklenmesi için kısa bir gecikme
+    }
+  }, []);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "/#salonlar") {
+      e.preventDefault();
+      
+      // Önce URL'in ana sayfa olup olmadığını kontrol et
+      if (window.location.pathname !== "/") {
+        // Ana sayfada değilsek, ana sayfaya yönlendir ve sonra scroll yap
+        window.location.href = "/#salonlar";
+        return;
+      }
+      
+      // Ana sayfadaysak smooth scroll yap
+      const element = document.getElementById("salonlar");
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+  };
+
   const navigationItems = [
-    { label: "Salonlarımız", href: "/salonlar" },
+    { label: "Salonlarımız", href: "/#salonlar" },
     { label: "Hakkımızda", href: "/about" },
     { label: "İletişim", href: "/contact" }
   ];
@@ -94,7 +131,10 @@ export const Header: React.FC = () => {
             <NavigationMenuList>
               {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.href}>
-                  <ListItem href={item.href}>
+                  <ListItem
+                    href={item.href}
+                    onClick={(e) => handleSmoothScroll(e, item.href)}
+                  >
                     {item.label}
                   </ListItem>
                 </NavigationMenuItem>
@@ -133,7 +173,10 @@ export const Header: React.FC = () => {
                 key={item.href}
                 href={item.href}
                 className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  handleSmoothScroll(e, item.href);
+                  setIsOpen(false);
+                }}
                 legacyBehavior>
                 {item.label}
               </Link>
