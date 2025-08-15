@@ -16,20 +16,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-interface SheetProps {
-  children: React.ReactNode;
-}
-
-interface SheetTriggerProps {
-  children: React.ReactNode;
-  asChild?: boolean;
-}
-
-interface SheetContentProps {
-  side?: "left" | "right" | "top" | "bottom";
-  children: React.ReactNode;
-}
-
 // Temporary button component - will be replaced with proper shadcn/ui imports
 const Button: React.FC<ButtonProps> = ({ 
   variant = "default", 
@@ -62,6 +48,24 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, children, ...props }, ref) => {
+  return (
+    <NavigationMenuLink asChild>
+      <a
+        ref={ref}
+        className={navigationMenuTriggerStyle()}
+        {...props}
+      >
+        {children}
+      </a>
+    </NavigationMenuLink>
+  );
+});
+ListItem.displayName = "ListItem";
+
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -87,11 +91,9 @@ export const Header: React.FC = () => {
             <NavigationMenuList>
               {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.href}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                      {item.label}
-                    </NavigationMenuLink>
-                  </Link>
+                  <ListItem href={item.href}>
+                    {item.label}
+                  </ListItem>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
