@@ -1,12 +1,11 @@
-import type { Salon } from "@/lib/types"
+import type { Salon } from "./types"
 
 export async function getSalons(): Promise<Salon[]> {
   // API hazır olana kadar statik veri döndürüyoruz
   return [
     {
       id: "1",
-      imageUrl:
-        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2098&q=80",
+      imageUrl: "/placeholder.svg?height=400&width=600",
       name: "Gül Bahçesi Balo Salonu",
       capacity: 300,
       slug: "gul-bahcesi-balo-salonu",
@@ -21,6 +20,8 @@ export async function getSalons(): Promise<Salon[]> {
       ],
       videoUrl: "https://example.com/video1.mp4",
       location: "Merkez, İstanbul",
+      rating: 4.9,
+      hasVideo: true,
       price: { min: 50000, max: 80000 },
       specifications: {
         area: "400 m²",
@@ -30,8 +31,7 @@ export async function getSalons(): Promise<Salon[]> {
     },
     {
       id: "2",
-      imageUrl:
-        "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      imageUrl: "/placeholder.svg?height=400&width=600",
       name: "Kristal Teras",
       capacity: 150,
       slug: "kristal-teras",
@@ -40,6 +40,8 @@ export async function getSalons(): Promise<Salon[]> {
       features: ["Cam Tavan", "Doğal Işık", "Bahçe Manzarası", "İntim Atmosfer", "Modern Tasarım"],
       videoUrl: "https://example.com/video2.mp4",
       location: "Beşiktaş, İstanbul",
+      rating: 4.8,
+      hasVideo: true,
       price: { min: 30000, max: 50000 },
       specifications: {
         area: "250 m²",
@@ -49,8 +51,7 @@ export async function getSalons(): Promise<Salon[]> {
     },
     {
       id: "3",
-      imageUrl:
-        "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      imageUrl: "/placeholder.svg?height=400&width=600",
       name: "Bahçe Terası",
       capacity: 200,
       slug: "bahce-terasi",
@@ -59,6 +60,8 @@ export async function getSalons(): Promise<Salon[]> {
       features: ["Açık Hava", "Bahçe Ortamı", "Yıldızlı Tavan", "Doğal Dekor", "Romantik Aydınlatma"],
       videoUrl: "https://example.com/video3.mp4",
       location: "Sarıyer, İstanbul",
+      rating: 4.7,
+      hasVideo: true,
       price: { min: 35000, max: 60000 },
       specifications: {
         area: "300 m²",

@@ -6,13 +6,23 @@ import { SalonCard } from "../cards/SalonCard"
 import { Button } from "../ui/button"
 import { FadeInUp } from "../ui/animation-wrapper"
 import { staggerContainer, staggerItem, scaleOnHover } from "../../lib/animations"
-import type { Salon } from "../../lib/types"
 
-interface Props {
-  salons?: Salon[]
+interface Salon {
+  id: string
+  name: string
+  capacity: number
+  location: string
+  price: number
+  images: string[]
+  features: string[]
+  description: string
 }
 
-export function SalonShowcaseSection({ salons = [] }: Props) {
+interface Props {
+  salons: Salon[]
+}
+
+export default function SalonShowcaseClient({ salons }: Props) {
   return (
     <section id="salonlar" className="py-20 md:py-24 bg-background relative overflow-hidden">
       {/* Background Decorative Elements */}

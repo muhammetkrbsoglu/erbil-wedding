@@ -1,171 +1,68 @@
 "use client"
 
-import { motion, type Variants } from "framer-motion"
+import { motion } from "framer-motion"
 import type { ReactNode } from "react"
-import { cn } from "@/lib/utils"
 
-interface AnimationWrapperProps {
+interface FadeInUpProps {
   children: ReactNode
-  animation?: Variants
   className?: string
   delay?: number
-  duration?: number
-  once?: boolean
-  threshold?: number
 }
 
-export function AnimationWrapper({
-  children,
-  animation,
-  className,
-  delay = 0,
-  duration,
-  once = true,
-  threshold = 0.1,
-}: AnimationWrapperProps) {
-  const defaultAnimation: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: duration || 0.5,
-        delay,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  }
-
+export function FadeInUp({ children, className = "", delay = 0 }: FadeInUpProps) {
   return (
     <motion.div
-      className={cn(className)}
-      variants={animation || defaultAnimation}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.6,
+        delay,
+        ease: [0.4, 0, 0.2, 1],
+      }}
+      className={className}
     >
       {children}
     </motion.div>
   )
 }
 
-// Specialized animation components
-export function FadeInUp({
-  children,
-  className,
-  delay = 0,
-}: {
+interface FadeInProps {
   children: ReactNode
   className?: string
   delay?: number
-}) {
+}
+
+export function FadeIn({ children, className = "", delay = 0 }: FadeInProps) {
   return (
-    <AnimationWrapper
-      animation={{
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.6,
-            delay,
-            ease: [0.4, 0, 0.2, 1],
-          },
-        },
-      }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay }}
       className={className}
     >
       {children}
-    </AnimationWrapper>
+    </motion.div>
   )
 }
 
-export function ScaleIn({
-  children,
-  className,
-  delay = 0,
-}: {
+interface SlideInLeftProps {
   children: ReactNode
   className?: string
   delay?: number
-}) {
-  return (
-    <AnimationWrapper
-      animation={{
-        hidden: { opacity: 0, scale: 0.8 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          transition: {
-            duration: 0.4,
-            delay,
-            ease: [0.68, -0.55, 0.265, 1.55],
-          },
-        },
-      }}
-      className={className}
-    >
-      {children}
-    </AnimationWrapper>
-  )
 }
 
-export function SlideInLeft({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: ReactNode
-  className?: string
-  delay?: number
-}) {
+export function SlideInLeft({ children, className = "", delay = 0 }: SlideInLeftProps) {
   return (
-    <AnimationWrapper
-      animation={{
-        hidden: { opacity: 0, x: -50 },
-        visible: {
-          opacity: 1,
-          x: 0,
-          transition: {
-            duration: 0.6,
-            delay,
-            ease: [0.4, 0, 0.2, 1],
-          },
-        },
-      }}
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay }}
       className={className}
     >
       {children}
-    </AnimationWrapper>
-  )
-}
-
-export function SlideInRight({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: ReactNode
-  className?: string
-  delay?: number
-}) {
-  return (
-    <AnimationWrapper
-      animation={{
-        hidden: { opacity: 0, x: 50 },
-        visible: {
-          opacity: 1,
-          x: 0,
-          transition: {
-            duration: 0.6,
-            delay,
-            ease: [0.4, 0, 0.2, 1],
-          },
-        },
-      }}
-      className={className}
-    >
-      {children}
-    </AnimationWrapper>
+    </motion.div>
   )
 }

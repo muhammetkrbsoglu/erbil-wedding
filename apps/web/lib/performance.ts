@@ -4,6 +4,8 @@ export class PerformanceTracker {
   private static instance: PerformanceTracker
   private metrics: Map<string, number> = new Map()
 
+  private constructor() {}
+
   static getInstance(): PerformanceTracker {
     if (!PerformanceTracker.instance) {
       PerformanceTracker.instance = new PerformanceTracker()

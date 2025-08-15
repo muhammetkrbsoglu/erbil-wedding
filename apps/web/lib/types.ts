@@ -2,14 +2,19 @@ export interface Salon {
   id: string
   name: string
   slug: string
-  imageUrl: string
+  imageUrl?: string
+  /** Array of image URLs used by components that expect `images` */
+  images?: string[]
   capacity: number
   description?: string
   features?: string[]
   videoUrl?: string
   gallery?: string[]
   location?: string
-  price?: {
+  rating?: number
+  hasVideo?: boolean
+  /** Price can be a single number (e.g. per event) or a range with min/max */
+  price?: number | {
     min: number
     max: number
   }
