@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 import { validate } from './config/env.validation';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -17,7 +18,7 @@ import { ThrottlerBehindProxyGuard } from './common/guards/throttler-behind-prox
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', '.env.development', '.env.production'],
+      envFilePath: join(__dirname, '../.env'),
       validate,
     }),
     ThrottlerModule.forRootAsync({
