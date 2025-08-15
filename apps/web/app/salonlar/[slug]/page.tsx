@@ -164,7 +164,7 @@ export default async function SalonDetailPage({ params }: PageProps) {
                     </p>
                   </div>
                   
-                  <Link href={`/salonlar/${slug}/randevu-al`} legacyBehavior>
+                  <Link href={`/salonlar/${slug}/randevu-al`} className="block">
                     <Button 
                       size="lg" 
                       className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
