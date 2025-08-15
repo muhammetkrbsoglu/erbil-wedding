@@ -18,7 +18,7 @@ import { ThrottlerBehindProxyGuard } from './common/guards/throttler-behind-prox
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: join(__dirname, '../.env'),
+      envFilePath: './apps/api/.env',
       validate,
     }),
     ThrottlerModule.forRootAsync({
