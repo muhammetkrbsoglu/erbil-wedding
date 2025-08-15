@@ -57,36 +57,36 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2" legacyBehavior>
+        <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-bold font-serif">Erbil Wedding</span>
         </Link>
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/#salonlar" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink asChild>
+                <Link href="/#salonlar" className={navigationMenuTriggerStyle()}>
                   Salonlarımız
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/hakkimizda" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink asChild>
+                <Link href="/hakkimizda" className={navigationMenuTriggerStyle()}>
                   Hakkımızda
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/iletisim" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink asChild>
+                <Link href="/iletisim" className={navigationMenuTriggerStyle()}>
                   İletişim
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" legacyBehavior>
+          <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" className="block">
             <Button>Randevu Talep Et</Button>
           </Link>
         </div>
@@ -129,7 +129,7 @@ export function Header() {
               İletişim
             </Link>
             <div className="pt-4 space-y-2">
-              <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" legacyBehavior>
+              <Link href="/salonlar/gul-bahcesi-balo-salonu/randevu-al" className="block w-full">
                 <Button variant="default" size="default" className="w-full">
                   Randevu Talep Et
                 </Button>

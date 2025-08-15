@@ -80,7 +80,10 @@ export const Header: React.FC = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <div className="flex items-center">
-          <Link href="/" className="text-2xl font-serif font-bold text-foreground">
+          <Link
+            href="/"
+            className="text-2xl font-serif font-bold text-foreground"
+            legacyBehavior>
             <span className="font-playfair">Erbil Wedding</span>
           </Link>
         </div>
@@ -102,7 +105,7 @@ export const Header: React.FC = () => {
 
         {/* CTA Button */}
         <div className="hidden md:flex">
-          <Link href="/randevu" className="block">
+          <Link href="/randevu" className="block" legacyBehavior>
             <Button variant="default" size="default">
               Randevu Talep Et
             </Button>
@@ -131,12 +134,12 @@ export const Header: React.FC = () => {
                 href={item.href}
                 className="block text-sm font-medium text-foreground hover:text-accent transition-colors py-2"
                 onClick={() => setIsOpen(false)}
-              >
+                legacyBehavior>
                 {item.label}
               </Link>
             ))}
             <div className="pt-4">
-              <Link href="/randevu" className="block w-full">
+              <Link href="/randevu" className="block w-full" legacyBehavior>
                 <Button variant="default" size="default" className="w-full">
                   Randevu Talep Et
                 </Button>
