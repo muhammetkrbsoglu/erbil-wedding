@@ -2,8 +2,8 @@
 
 import { motion, type Variants } from "framer-motion"
 import type { ReactNode } from "react"
-import { useReducedMotion } from "@/hooks/use-animation"
-import { useLazyAnimation } from "@/hooks/use-performance"
+import { useReducedMotion } from "../apps/web/hooks/use-animation"
+import { useLazyAnimation } from "../apps/web/hooks/use-performance"
 
 interface AccessibleAnimationProps {
   children: ReactNode

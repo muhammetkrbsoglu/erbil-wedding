@@ -1,58 +1,45 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import { cn } from "@repo/ui/lib/utils";
-import { Header } from "@repo/ui/layout/header";
-import { Footer } from "@repo/ui/layout/footer";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "sonner";
-import "./globals.css";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter, Playfair_Display } from "next/font/google"
+import "./globals.css"
+import { Header } from "../components/layout/Header"
+import { SEOProvider } from "../components/seo/seo-provider"
+import { PerformanceMonitor } from "../components/ui/performance-monitor"
+import { MobileExperienceProvider } from "../components/mobile/mobile-experience-provider"
 
 const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-inter",
-});
+})
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-playfair",
-});
+})
 
 export const metadata: Metadata = {
-  title: "Erbil Wedding",
-  description: "Hayallerinizdeki düğün için en özel mekanlar.",
-  manifest: "/manifest.json",
-  themeColor: "#000000",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  icons: [
-    { rel: "icon", url: "/icons/favicon.ico" },
-    { rel: "apple-touch-icon", url: "/icons/icon-192x192.png" }
-  ]
-};
+  title: "Erbil Wedding - Lüks Düğün Salonları",
+  description: "İstanbul'un en seçkin düğün salonlarında hayalinizdeki düğünü gerçeğe dönüştürün.",
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  console.log("CLERK KEY:", process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.variable,
-          playfair.variable
-        )}
-      >
-        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
-          <div className="flex flex-col min-h-screen">
+    <html lang="tr" className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body>
+        <SEOProvider>
+          <MobileExperienceProvider>
             <Header />
-            {children}
-            <Footer />
-            <Toaster />
-          </div>
-        </ClerkProvider>
+            <main>{children}</main>
+            <PerformanceMonitor enabled={process.env.NODE_ENV === "development"} />
+          </MobileExperienceProvider>
+        </SEOProvider>
       </body>
     </html>
-  );
+  )
 }

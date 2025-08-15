@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { buttonPress } from "@/lib/animations"
+import { buttonPress } from "../../lib/animations"
 
 const navigation = [
   { name: "Ana Sayfa", href: "/" },

@@ -3,12 +3,12 @@
 import type React from "react"
 
 import { createContext, useContext, useState, useEffect } from "react"
-import { InstallPrompt } from "@/components/pwa/install-prompt"
-import { OfflineIndicator } from "@/components/pwa/offline-indicator"
-import { AppNavigation } from "@/components/pwa/app-navigation"
-import { QAChecklist } from "@/components/qa/qa-checklist"
-import { PerformanceValidator } from "@/components/qa/performance-validator"
-import { AccessibilityValidator } from "@/components/qa/accessibility-validator"
+import { InstallPrompt } from "../pwa/install-prompt"
+import { OfflineIndicator } from "../pwa/offline-indicator"
+import { AppNavigation } from "../pwa/app-navigation"
+import { QAChecklist } from "../qa/qa-checklist"
+import { PerformanceValidator } from "../qa/performance-validator"
+import { AccessibilityValidator } from "../qa/accessibility-validator"
 
 interface MobileExperienceContextType {
   isMobile: boolean

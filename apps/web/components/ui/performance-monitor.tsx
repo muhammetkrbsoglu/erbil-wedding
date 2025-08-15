@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { usePerformanceMonitor } from "@/hooks/use-performance"
+import { usePerformanceMonitor } from "../../hooks/use-performance"
 
 interface PerformanceMonitorProps {
   enabled?: boolean
