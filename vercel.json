@@ -1,9 +1,9 @@
 {
-  "buildCommand": "cd apps/web && npm install && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
   "installCommand": "npm install",
-  "devCommand": "cd apps/web && npm run dev",
+  "devCommand": "npm run dev",
   "regions": ["fra1"],
   "functions": {
     "app/api/**/*.ts": {
