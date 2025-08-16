@@ -14,7 +14,7 @@ interface MobileCTAAction {
   icon: React.ComponentType<{ className?: string }>
   href?: string
   onClick?: () => void
-  variant: "primary" | "secondary" | "outline"
+  variant: "default" | "secondary" | "outline"
   haptic?: boolean
 }
 
@@ -24,7 +24,7 @@ const ctaActions: MobileCTAAction[] = [
     label: "Hemen Ara",
     icon: Phone,
     href: "tel:+905551234567",
-    variant: "primary",
+    variant: "default",
     haptic: true,
   },
   {

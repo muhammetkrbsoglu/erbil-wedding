@@ -123,14 +123,7 @@ export default async function SalonDetailPageClient({ params }: SalonDetailPageP
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-text mb-6">Konum</h2>
                   <div className="rounded-xl overflow-hidden h-64 mb-4">
-                    <GoogleMap
-                      center={{ lat: 40.9925, lng: 29.0244 }} // Varsayılan konum
-                      zoom={16}
-                      className="w-full h-full"
-                      showBusinessInfo={true}
-                      businessName={salon.name}
-                      businessAddress={salon.location || "Bağdat Caddesi No: 123, Kadıköy, İstanbul 34710"}
-                    />
+                    <GoogleMap />
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <DirectionsButton
