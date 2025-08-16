@@ -83,3 +83,31 @@ export function GoogleMap() {
     </Card>
   )
 }
+
+export function DirectionsButton({ 
+  address, 
+  className = "" 
+}: { 
+  address?: string 
+  className?: string 
+}) {
+  const handleDirections = () => {
+    const defaultAddress = "Yeşildere, 550. Sk. No:8, 55200 Atakum/Samsun"
+    const targetAddress = address || defaultAddress
+    const encodedAddress = encodeURIComponent(targetAddress)
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`
+    
+    window.open(googleMapsUrl, '_blank')
+  }
+
+  return (
+    <Button
+      onClick={handleDirections}
+      className={`bg-accent hover:bg-accent/90 text-text ${className}`}
+      style={{ backgroundColor: "#C08552", color: "#312B27" }}
+    >
+      <Navigation className="w-4 h-4 mr-2" />
+      Yol Tarifi Al
+    </Button>
+  )
+}
