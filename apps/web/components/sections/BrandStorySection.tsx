@@ -48,7 +48,7 @@ export const BrandStorySection = () => {
 
             {/* CTA Button */}
             <div className="pt-4">
-              <Link href="/hikayemiz">
+              <Link href="/hakkimizda">
                 <Button
                   variant="outline"
                   size="lg"

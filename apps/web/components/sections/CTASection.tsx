@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "../ui/button"
 
 export const CTASection = () => {
@@ -13,9 +14,11 @@ export const CTASection = () => {
             adımı atın.
           </p>
 
-          <Button size="lg" className="">
-            Hemen Randevu Talep Edin
-          </Button>
+          <Link href="/randevu-talep-et">
+            <Button asChild size="lg" className="">
+              <span>Hemen Randevu Talep Edin</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
