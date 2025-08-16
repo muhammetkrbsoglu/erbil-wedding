@@ -5,8 +5,8 @@ import { Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const socialLinks = [
-    { icon: Instagram, href: "https://instagram.com/erbilwedding", label: "Instagram" },
-    { icon: Facebook, href: "https://facebook.com/erbilwedding", label: "Facebook" }
+  { icon: Instagram, href: "https://www.instagram.com/erbilwedding?igsh=ZXFxeXRuanhuOThn", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/ErbilWeddingDugunSalonu/", label: "Facebook" }
   ];
 
   const navigationLinks = [

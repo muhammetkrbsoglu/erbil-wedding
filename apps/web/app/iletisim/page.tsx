@@ -105,7 +105,7 @@ export default function IletisimPage() {
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   Telefon
                 </h3>
-                <p style={{ color: "#8B7355" }}>+90 (312) 555 0123</p>
+                <p style={{ color: "#8B7355" }}>0552 800 39 39</p>
                 <Button variant="outline" size="sm" className="mt-3 bg-transparent">
                   Ara
                 </Button>
@@ -133,7 +133,7 @@ export default function IletisimPage() {
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   WhatsApp
                 </h3>
-                <p style={{ color: "#8B7355" }}>+90 (312) 555 0123</p>
+                <p style={{ color: "#8B7355" }}>0552 800 39 39</p>
                 <Button variant="outline" size="sm" className="mt-3 bg-transparent">
                   Mesaj Gönder
                 </Button>
@@ -148,8 +148,14 @@ export default function IletisimPage() {
                   Adres
                 </h3>
                 <p style={{ color: "#8B7355" }}>Yeşildere, 550. Sk. No:8, 55200 Atakum/Samsun</p>
-                <Button variant="outline" size="sm" className="mt-3 bg-transparent">
-                  Yol Tarifi
+                <Button asChild variant="outline" size="sm" className="mt-3 bg-transparent">
+                  <a
+                    href="https://maps.app.goo.gl/fz8TV6qdrwivXG468?g_st=ac"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Yol Tarifi
+                  </a>
                 </Button>
               </Card>
             </div>
@@ -327,7 +333,7 @@ export default function IletisimPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-red-600 hover:bg-red-700 text-white">
                     <Phone className="w-4 h-4 mr-2" />
-                    Acil Durum: +90 (312) 555 0199
+                    Acil Durum: 0552 800 39 39
                   </Button>
                   <Button variant="outline">
                     <MessageCircle className="w-4 h-4 mr-2" />

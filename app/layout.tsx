@@ -161,8 +161,8 @@ export default function RootLayout({
                 availableLanguage: ["Turkish", "English"],
               },
               sameAs: [
-                "https://facebook.com/erbilwedding",
-                "https://instagram.com/erbilwedding",
+                "https://www.facebook.com/ErbilWeddingDugunSalonu/",
+                "https://www.instagram.com/erbilwedding?igsh=ZXFxeXRuanhuOThn",
                 "https://twitter.com/erbilwedding",
               ],
             }),

@@ -60,7 +60,7 @@ export function GoogleMap() {
                 Telefon
               </p>
               <p className="text-sm" style={{ color: "#8B7355" }}>
-                +90 (312) 555 0123
+                0552 800 39 39
               </p>
             </div>
           </div>
