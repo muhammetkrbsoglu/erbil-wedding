@@ -28,19 +28,19 @@ export const metadata: Metadata = {
 
 export default function IletisimPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#FEFCFA" }}>
+    <div className="min-h-screen bg-primary">
       {/* Hero Section */}
       <section className="relative py-20 px-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F5EBE0] to-[#FEFCFA] opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary opacity-50" />
         <div className="relative max-w-4xl mx-auto text-center">
           <AccessibleAnimation>
-            <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6" style={{ color: "#312B27" }}>
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-text">
               Bize Ulaşın
             </h1>
-            <p className="text-xl md:text-2xl mb-8" style={{ color: "#8B7355" }}>
+            <p className="text-xl md:text-2xl mb-8 text-neutral">
               Hayalinizdeki düğün için bugün bizimle iletişime geçin
             </p>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: "#8B7355" }}>
+            <p className="text-lg max-w-2xl mx-auto text-neutral">
               Uzman ekibimiz, size özel düğün mekanınızı bulmanızda ve unutulmaz bir gün yaşamanızda size yardımcı olmak
               için burada. Ücretsiz danışmanlık için hemen iletişime geçin.
             </p>
@@ -54,13 +54,13 @@ export default function IletisimPage() {
           <AccessibleAnimation>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <h2 className="font-playfair text-3xl font-bold mb-6" style={{ color: "#312B27" }}>
+                <h2 className="font-playfair text-3xl font-bold mb-6 text-text">
                   İletişim Formu
                 </h2>
-                <p className="text-lg mb-8" style={{ color: "#8B7355" }}>
+                <p className="text-lg mb-8 text-neutral">
                   Aşağıdaki formu doldurarak bizimle iletişime geçebilirsiniz. 24 saat içinde size geri dönüş yapacağız.
                 </p>
-                <Card className="border-2" style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}>
+                <Card className="border-2 border-secondary bg-primary">
                   <CardContent className="p-6">
                     <ContactForm />
                   </CardContent>
@@ -68,7 +68,7 @@ export default function IletisimPage() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="font-playfair text-2xl font-semibold mb-4" style={{ color: "#312B27" }}>
+                <h3 className="font-playfair text-2xl font-semibold mb-4 text-text">
                   Neden Erbil Wedding?
                 </h3>
                 <div className="space-y-4">
@@ -80,8 +80,8 @@ export default function IletisimPage() {
                     "Kişiye özel organizasyon",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5" style={{ color: "#C08552" }} />
-                      <span style={{ color: "#8B7355" }}>{item}</span>
+                      <CheckCircle className="w-5 h-5 text-accent" />
+                      <span className="text-neutral">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -93,61 +93,57 @@ export default function IletisimPage() {
         {/* Direct Contact Information */}
         <section>
           <AccessibleAnimation>
-            <h2 className="font-playfair text-3xl font-bold mb-8 text-center" style={{ color: "#312B27" }}>
+            <h2 className="font-playfair text-3xl font-bold mb-8 text-center text-text">
               İletişim Bilgileri
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card
-                className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
-                style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
+                className="text-center p-6 border-2 hover:shadow-lg transition-shadow border-secondary bg-primary"
               >
-                <Phone className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
-                <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                <Phone className="w-8 h-8 mx-auto mb-4 text-accent" />
+                <h3 className="font-semibold mb-2 text-text">
                   Telefon
                 </h3>
-                <p style={{ color: "#8B7355" }}>0552 800 39 39</p>
+                <p className="text-neutral">0552 800 39 39</p>
                 <Button variant="outline" size="sm" className="mt-3 bg-transparent">
                   Ara
                 </Button>
               </Card>
 
               <Card
-                className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
-                style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
+                className="text-center p-6 border-2 hover:shadow-lg transition-shadow border-secondary bg-primary"
               >
-                <Mail className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
-                <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                <Mail className="w-8 h-8 mx-auto mb-4 text-accent" />
+                <h3 className="font-semibold mb-2 text-text">
                   E-posta
                 </h3>
-                <p style={{ color: "#8B7355" }}>info@erbilwedding.com</p>
+                <p className="text-neutral">info@erbilwedding.com</p>
                 <Button variant="outline" size="sm" className="mt-3 bg-transparent">
                   Mail Gönder
                 </Button>
               </Card>
 
               <Card
-                className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
-                style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
+                className="text-center p-6 border-2 hover:shadow-lg transition-shadow border-secondary bg-primary"
               >
-                <MessageCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
-                <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                <MessageCircle className="w-8 h-8 mx-auto mb-4 text-accent" />
+                <h3 className="font-semibold mb-2 text-text">
                   WhatsApp
                 </h3>
-                <p style={{ color: "#8B7355" }}>0552 800 39 39</p>
+                <p className="text-neutral">0552 800 39 39</p>
                 <Button variant="outline" size="sm" className="mt-3 bg-transparent">
                   Mesaj Gönder
                 </Button>
               </Card>
 
               <Card
-                className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
-                style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
+                className="text-center p-6 border-2 hover:shadow-lg transition-shadow border-secondary bg-primary"
               >
-                <MapPin className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
-                <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                <MapPin className="w-8 h-8 mx-auto mb-4 text-accent" />
+                <h3 className="font-semibold mb-2 text-text">
                   Adres
                 </h3>
-                <p style={{ color: "#8B7355" }}>Yeşildere, 550. Sk. No:8, 55200 Atakum/Samsun</p>
+                <p className="text-neutral">Yeşildere, 550. Sk. No:8, 55200 Atakum/Samsun</p>
                 <Button asChild variant="outline" size="sm" className="mt-3 bg-transparent">
                   <a
                     href="https://maps.app.goo.gl/fz8TV6qdrwivXG468?g_st=ac"
@@ -167,10 +163,10 @@ export default function IletisimPage() {
           <AccessibleAnimation>
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="font-playfair text-3xl font-bold mb-6" style={{ color: "#312B27" }}>
+                <h2 className="font-playfair text-3xl font-bold mb-6 text-text">
                   Çalışma Saatleri
                 </h2>
-                <Card className="border-2" style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}>
+                <Card className="border-2 border-secondary bg-primary">
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       {[
@@ -180,17 +176,17 @@ export default function IletisimPage() {
                       ].map((item, index) => (
                         <div
                           key={index}
-                          className="flex justify-between items-center py-2 border-b border-[#D5B4A1] last:border-b-0"
+                          className="flex justify-between items-center py-2 border-b border-secondary last:border-b-0"
                         >
-                          <span className="font-medium" style={{ color: "#312B27" }}>
+                          <span className="font-medium text-text">
                             {item.day}
                           </span>
-                          <span style={{ color: "#8B7355" }}>{item.hours}</span>
+                          <span className="text-neutral">{item.hours}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="mt-6 p-4 rounded-lg" style={{ backgroundColor: "#F5EBE0" }}>
-                      <p className="text-sm" style={{ color: "#8B7355" }}>
+                    <div className="mt-6 p-4 rounded-lg bg-primary">
+                      <p className="text-sm text-neutral">
                         <Clock className="w-4 h-4 inline mr-2" />
                         Akşam danışmanlık randevuları için önceden iletişime geçiniz.
                       </p>
@@ -200,7 +196,7 @@ export default function IletisimPage() {
               </div>
 
               <div>
-                <h3 className="font-playfair text-2xl font-semibold mb-6" style={{ color: "#312B27" }}>
+                <h3 className="font-playfair text-2xl font-semibold mb-6 text-text">
                   Hızlı İletişim
                 </h3>
                 <div className="space-y-4">
@@ -244,26 +240,26 @@ export default function IletisimPage() {
                 <GoogleMap />
               </div>
               <div className="space-y-6">
-                <Card className="border-2" style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}>
+                <Card className="border-2 border-secondary bg-primary">
                   <CardHeader>
-                    <CardTitle style={{ color: "#312B27" }}>Ulaşım Bilgileri</CardTitle>
+                    <CardTitle className="text-text">Ulaşım Bilgileri</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <h4 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                      <h4 className="font-semibold mb-2 text-text">
                         Toplu Taşıma
                       </h4>
-                      <p className="text-sm" style={{ color: "#8B7355" }}>
+                      <p className="text-sm text-neutral">
                         Dolmuş: Atakum-Merkez hattı
                         <br />
                         Otobüs: 1, 2, 15 numaralı hatlar
                       </p>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                      <h4 className="font-semibold mb-2 text-text">
                         Otopark
                       </h4>
-                      <p className="text-sm" style={{ color: "#8B7355" }}>
+                      <p className="text-sm text-neutral">
                         Ücretsiz otopark mevcuttur
                         <br />
                         Vale hizmeti sunulmaktadır
@@ -272,7 +268,7 @@ export default function IletisimPage() {
                   </CardContent>
                 </Card>
 
-                <Button className="w-full" style={{ backgroundColor: "#C08552", color: "#312B27" }}>
+                <Button className="w-full bg-accent text-text">
                   <MapPin className="w-4 h-4 mr-2" />
                   Yol Tarifi Al
                 </Button>
@@ -284,7 +280,7 @@ export default function IletisimPage() {
         {/* Social Media */}
         <section>
           <AccessibleAnimation>
-            <h2 className="font-playfair text-3xl font-bold mb-8 text-center" style={{ color: "#312B27" }}>
+            <h2 className="font-playfair text-3xl font-bold mb-8 text-center text-text">
               Sosyal Medya
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -296,17 +292,16 @@ export default function IletisimPage() {
               ].map((social, index) => (
                 <Card
                   key={index}
-                  className="text-center p-6 border-2 hover:shadow-lg transition-all hover:scale-105"
-                  style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
+                  className="text-center p-6 border-2 hover:shadow-lg transition-all hover:scale-105 border-secondary bg-primary"
                 >
-                  <social.icon className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
-                  <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
+                  <social.icon className="w-8 h-8 mx-auto mb-4 text-accent" />
+                  <h3 className="font-semibold mb-2 text-text">
                     {social.name}
                   </h3>
-                  <p className="text-sm mb-2" style={{ color: "#8B7355" }}>
+                  <p className="text-sm mb-2 text-neutral">
                     {social.desc}
                   </p>
-                  <p className="text-xs font-semibold mb-3" style={{ color: "#C08552" }}>
+                  <p className="text-xs font-semibold mb-3 text-accent">
                     {social.followers} takipçi
                   </p>
                   <Button variant="outline" size="sm">
@@ -321,13 +316,13 @@ export default function IletisimPage() {
         {/* Emergency Contact */}
         <section>
           <AccessibleAnimation>
-            <Card className="border-2 bg-gradient-to-r from-[#F5EBE0] to-[#FEFCFA]" style={{ borderColor: "#C08552" }}>
+            <Card className="border-2 bg-gradient-to-r from-primary to-primary border-accent">
               <CardContent className="p-8 text-center">
-                <Shield className="w-12 h-12 mx-auto mb-4" style={{ color: "#C08552" }} />
-                <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: "#312B27" }}>
+                <Shield className="w-12 h-12 mx-auto mb-4 text-accent" />
+                <h2 className="font-playfair text-2xl font-bold mb-4 text-text">
                   Acil Durum İletişim
                 </h2>
-                <p className="mb-6" style={{ color: "#8B7355" }}>
+                <p className="mb-6 text-neutral">
                   Düğün gününüzde herhangi bir sorun yaşarsanız, 7/24 acil destek hattımızdan bize ulaşabilirsiniz.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -348,7 +343,7 @@ export default function IletisimPage() {
         {/* FAQ Section */}
         <section>
           <AccessibleAnimation>
-            <h2 className="font-playfair text-3xl font-bold mb-8 text-center" style={{ color: "#312B27" }}>
+            <h2 className="font-playfair text-3xl font-bold mb-8 text-center text-text">
               Sık Sorulan Sorular
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -378,12 +373,12 @@ export default function IletisimPage() {
                   a: "İptal koşulları rezervasyon tarihine göre değişir. Detaylı bilgi için sözleşmeyi inceleyiniz.",
                 },
               ].map((faq, index) => (
-                <Card key={index} className="border-2" style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}>
+                <Card key={index} className="border-2 border-secondary bg-primary">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold mb-3" style={{ color: "#312B27" }}>
+                    <h3 className="font-semibold mb-3 text-text">
                       {faq.q}
                     </h3>
-                    <p style={{ color: "#8B7355" }}>{faq.a}</p>
+                    <p className="text-neutral">{faq.a}</p>
                   </CardContent>
                 </Card>
               ))}

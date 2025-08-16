@@ -10,7 +10,7 @@
   /* Soft & Rich Harmony Palette - WCAG AA Compliant */
   --color-primary-bg: #f8f6f2; /* Soft Cream - large backgrounds */
   --color-secondary-bg: #e8d5c4; /* Rich Beige - cards and secondary elements */
-  --color-accent: #d49585; /* Coral Rose Gold - CTAs and important links */
+  --color-accent: #c08575; /* Deep Coral Rose Gold - CTAs and important links */
   --color-neutral: #5d4e47; /* Rich Brown - icons and secondary text */
   --color-text: #2d1f1a; /* Deep Brown - main readable text */
 
@@ -34,7 +34,7 @@
   --border: #e8ded7;
   --input: #ffffff;
   --ring: var(--color-accent);
-  --chart-1: #d49585;
+  --chart-1: #c08575;
   --chart-2: #e8d5c4;
   --chart-3: #5d4e47;
   --chart-4: #f8f6f2;
@@ -117,7 +117,7 @@
   color: var(--primary-foreground);
   border-radius: 0.5rem;
   padding: 0.625rem 1.25rem;
-  box-shadow: 0 6px 18px rgba(212, 149, 133, 0.18);
+  box-shadow: 0 6px 18px rgba(192, 133, 117, 0.18);
   transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
 }
 .btn-luxury:hover {
@@ -139,7 +139,7 @@
 
 /* Accessible focus for interactive elements */
 :where(a, button, input, textarea, select) :focus {
-  box-shadow: 0 0 0 4px rgba(212, 149, 133, 0.12);
+  box-shadow: 0 0 0 4px rgba(192, 133, 117, 0.12);
   outline: none;
 }
 
@@ -187,7 +187,7 @@
 .focus-luxury:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(212, 149, 133, 0.12);
+  box-shadow: 0 0 0 3px rgba(192, 133, 117, 0.12);
   transform: scale(1.01);
   transition: all 0.2s ease;
 }

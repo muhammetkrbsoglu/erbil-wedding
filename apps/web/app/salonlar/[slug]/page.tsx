@@ -11,8 +11,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const salon = await getSalonBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params
+  const salon = await getSalonBySlug(resolvedParams.slug)
 
   if (!salon) {
     return {
@@ -29,8 +30,9 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
   }
 }
 
-export default async function SalonDetailPage({ params }: any) {
-  const salon = await getSalonBySlug(params.slug as string)
+export default async function SalonDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params
+  const salon = await getSalonBySlug(resolvedParams.slug)
   if (!salon) {
     notFound()
   }

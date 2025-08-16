@@ -105,10 +105,10 @@ export function ContactForm() {
           id="name"
           {...form.register("name")}
           placeholder="İsminizi girin"
-          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
+          className="bg-primary border-secondary"
         />
         {form.formState.errors.name && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm text-accent">
             {form.formState.errors.name.message}
           </p>
         )}
@@ -121,10 +121,10 @@ export function ContactForm() {
           type="email"
           {...form.register("email")}
           placeholder="E-posta adresinizi girin"
-          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
+          className="bg-primary border-secondary"
         />
         {form.formState.errors.email && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm text-accent">
             {form.formState.errors.email.message}
           </p>
         )}
@@ -137,10 +137,10 @@ export function ContactForm() {
           type="tel"
           {...form.register("phone")}
           placeholder="Telefon numaranızı girin"
-          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
+          className="bg-primary border-secondary"
         />
         {form.formState.errors.phone && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm text-accent">
             {form.formState.errors.phone.message}
           </p>
         )}
@@ -148,15 +148,14 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <Label htmlFor="message">Mesajınız</Label>
-        <Textarea
-          id="message"
-          {...form.register("message")}
-          placeholder="Mesajınızı girin"
-          className="min-h-[120px]"
-          style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
-        />
+                  <Textarea
+            id="message"
+            {...form.register("message")}
+            placeholder="Mesajınızı girin"
+            className="min-h-[120px] bg-primary border-secondary"
+          />
         {form.formState.errors.message && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm text-accent">
             {form.formState.errors.message.message}
           </p>
         )}
@@ -166,7 +165,6 @@ export function ContactForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full bg-accent text-text"
-  style={{ backgroundColor: "#C08552", color: "#312B27" }}
       >
         {isSubmitting ? "Gönderiliyor..." : "Gönder"}
       </Button>
