@@ -18,7 +18,7 @@ export function VenueCard({ venue, isSelected, onSelect }: VenueCardProps) {
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
       className={`
-        relative cursor-pointer rounded-2xl overflow-hidden bg-white shadow-lg
+        relative cursor-pointer rounded-2xl overflow-hidden bg-secondary/20 shadow-lg
         transition-all duration-300 hover:shadow-xl
         ${isSelected ? "ring-2 ring-accent shadow-accent/20" : ""}
       `}
@@ -31,13 +31,14 @@ export function VenueCard({ venue, isSelected, onSelect }: VenueCardProps) {
           fill
           className="object-cover transition-transform duration-300 hover:scale-105"
         />
+
         {isSelected && (
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             className="absolute top-3 right-3 w-6 h-6 bg-accent rounded-full flex items-center justify-center"
           >
-            <Star className="w-3 h-3 text-white fill-current" />
+            <Star className="w-3 h-3 text-text fill-current" />
           </motion.div>
         )}
       </div>
@@ -60,7 +61,13 @@ export function VenueCard({ venue, isSelected, onSelect }: VenueCardProps) {
 
         {venue.price && (
           <div className="text-accent font-semibold">
-            ₺{venue.price.min.toLocaleString()} - ₺{venue.price.max.toLocaleString()}
+            {typeof venue.price === "number" ? (
+              <>₺{venue.price.toLocaleString()}</>
+            ) : (
+              <>
+                ₺{venue.price.min.toLocaleString()} - ₺{venue.price.max.toLocaleString()}
+              </>
+            )}
           </div>
         )}
 

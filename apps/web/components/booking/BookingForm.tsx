@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { type BookingFormData, EVENT_TYPES, DURATION_OPTIONS } from "@/lib/types"
@@ -9,8 +8,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Users, Send, CheckCircle, AlertCircle } from "lucide-react"
+import { CalendarIcon, Users, CheckCircle, AlertCircle } from "lucide-react"
 import { formField, staggerContainer, staggerItem } from "@/lib/animations"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { format } from "date-fns"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { cn } from "@/lib/utils"
+import { tr } from "date-fns/locale"
 
 interface BookingFormProps {
   venueId: string | null
@@ -34,7 +39,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
     specialRequirements: "",
   })
 
-  const [errors, setErrors] = useState<Partial<BookingFormData>>({})
+  const [errors, setErrors] = useState<Partial<Record<keyof BookingFormData, string | undefined>>>({})
   const [touchedFields, setTouchedFields] = useState<Set<keyof BookingFormData>>(new Set())
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
@@ -92,7 +97,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
         break
     }
 
-    const newErrors: Partial<BookingFormData> = {}
+    const newErrors: Partial<Record<keyof BookingFormData, string | undefined>> = {}
     fieldsToValidate.forEach((field) => {
       const error = validateField(field, formData[field])
       if (error) newErrors[field] = error
@@ -109,7 +114,8 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
     if (currentStep !== "review") {
       if (validateCurrentStep()) {
         const nextStepIndex = Math.min(currentStepIndex + 1, steps.length - 1)
-        setCurrentStep(steps[nextStepIndex].key)
+        const nextStep = steps[nextStepIndex]
+        if (nextStep) setCurrentStep(nextStep.key)
       }
       return
     }
@@ -141,7 +147,8 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
 
   const goToPreviousStep = () => {
     const prevStepIndex = Math.max(currentStepIndex - 1, 0)
-    setCurrentStep(steps[prevStepIndex].key)
+    const prevStep = steps[prevStepIndex]
+    if (prevStep) setCurrentStep(prevStep.key)
   }
 
   if (!venueId) {
@@ -159,7 +166,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
           >
-            <Calendar className="w-8 h-8 text-accent" />
+            <CalendarIcon className="w-8 h-8 text-accent" />
           </motion.div>
           <motion.h3
             className="text-lg font-semibold text-text mb-2"
@@ -243,7 +250,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 <motion.div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
                     index <= currentStepIndex
-                      ? "bg-accent text-white"
+                      ? "bg-accent text-text"
                       : "bg-muted text-muted-foreground border-2 border-muted"
                   }`}
                   animate={{
@@ -296,15 +303,15 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 İletişim Bilgileri
               </motion.h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <motion.div variants={staggerItem}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-full">
+                <motion.div variants={staggerItem} className="min-w-0">
                   <Label htmlFor="firstName">Ad *</Label>
                   <motion.div variants={formField} initial="rest" whileFocus="focus">
                     <Input
                       id="firstName"
                       value={formData.firstName}
                       onChange={(e) => updateField("firstName", e.target.value)}
-                      className={`focus-luxury ${errors.firstName ? "border-destructive" : ""}`}
+                      className={`w-full focus-luxury ${errors.firstName ? "border-destructive" : ""}`}
                     />
                   </motion.div>
                   <AnimatePresence>
@@ -322,14 +329,14 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                   </AnimatePresence>
                 </motion.div>
 
-                <motion.div variants={staggerItem}>
+                <motion.div variants={staggerItem} className="min-w-0">
                   <Label htmlFor="lastName">Soyad *</Label>
                   <motion.div variants={formField} initial="rest" whileFocus="focus">
                     <Input
                       id="lastName"
                       value={formData.lastName}
                       onChange={(e) => updateField("lastName", e.target.value)}
-                      className={`focus-luxury ${errors.lastName ? "border-destructive" : ""}`}
+                      className={`w-full focus-luxury ${errors.lastName ? "border-destructive" : ""}`}
                     />
                   </motion.div>
                   <AnimatePresence>
@@ -348,7 +355,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 </motion.div>
               </div>
 
-              <motion.div variants={staggerItem}>
+              <motion.div variants={staggerItem} className="w-full max-w-full">
                 <Label htmlFor="email">E-posta *</Label>
                 <motion.div variants={formField} initial="rest" whileFocus="focus">
                   <Input
@@ -356,7 +363,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                     type="email"
                     value={formData.email}
                     onChange={(e) => updateField("email", e.target.value)}
-                    className={`focus-luxury ${errors.email ? "border-destructive" : ""}`}
+                    className={`w-full focus-luxury ${errors.email ? "border-destructive" : ""}`}
                   />
                 </motion.div>
                 <AnimatePresence>
@@ -374,7 +381,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 </AnimatePresence>
               </motion.div>
 
-              <motion.div variants={staggerItem}>
+              <motion.div variants={staggerItem} className="w-full max-w-full">
                 <Label htmlFor="phone">Telefon *</Label>
                 <motion.div variants={formField} initial="rest" whileFocus="focus">
                   <Input
@@ -382,7 +389,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => updateField("phone", e.target.value)}
-                    className={`focus-luxury ${errors.phone ? "border-destructive" : ""}`}
+                    className={`w-full focus-luxury ${errors.phone ? "border-destructive" : ""}`}
                   />
                 </motion.div>
                 <AnimatePresence>
@@ -418,13 +425,42 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
               <motion.div variants={staggerItem}>
                 <Label htmlFor="eventDate">Etkinlik Tarihi *</Label>
                 <motion.div variants={formField} initial="rest" whileFocus="focus">
-                  <Input
-                    id="eventDate"
-                    type="date"
-                    value={formData.eventDate}
-                    onChange={(e) => updateField("eventDate", e.target.value)}
-                    className={`focus-luxury ${errors.eventDate ? "border-destructive" : ""}`}
-                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal focus-luxury",
+                          !formData.eventDate && "text-muted-foreground",
+                          errors.eventDate && "border-destructive",
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {formData.eventDate ? (
+                          format(new Date(formData.eventDate), "dd MMMM yyyy", { locale: tr })
+                        ) : (
+                          <span>Tarih seçiniz</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto p-0 bg-background/95 backdrop-blur-sm border-accent/20"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={formData.eventDate ? new Date(formData.eventDate) : undefined}
+                        onSelect={(date) => {
+                          if (date) {
+                            updateField("eventDate", format(date, "yyyy-MM-dd"))
+                          }
+                        }}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                        className="luxury-calendar"
+                      />
+                    </PopoverContent>
+                  </Popover>
                 </motion.div>
                 <AnimatePresence>
                   {errors.eventDate && (
@@ -469,26 +505,21 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 </AnimatePresence>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <motion.div variants={staggerItem}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-full">
+                <motion.div variants={staggerItem} className="min-w-0">
                   <Label htmlFor="eventType">Etkinlik Türü *</Label>
-                  <motion.select
-                    id="eventType"
-                    value={formData.eventType}
-                    onChange={(e) => updateField("eventType", e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md bg-background focus-luxury ${
-                      errors.eventType ? "border-destructive" : "border-border"
-                    }`}
-                    whileFocus={{ scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <option value="">Seçiniz</option>
-                    {EVENT_TYPES.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </motion.select>
+                  <Select value={formData.eventType} onValueChange={(value) => updateField("eventType", value)}>
+                    <SelectTrigger className={`w-full focus-luxury ${errors.eventType ? "border-destructive" : ""}`}>
+                      <SelectValue placeholder="Seçiniz" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {EVENT_TYPES.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <AnimatePresence>
                     {errors.eventType && (
                       <motion.p
@@ -504,25 +535,20 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                   </AnimatePresence>
                 </motion.div>
 
-                <motion.div variants={staggerItem}>
+                <motion.div variants={staggerItem} className="min-w-0">
                   <Label htmlFor="duration">Etkinlik Süresi *</Label>
-                  <motion.select
-                    id="duration"
-                    value={formData.duration}
-                    onChange={(e) => updateField("duration", e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md bg-background focus-luxury ${
-                      errors.duration ? "border-destructive" : "border-border"
-                    }`}
-                    whileFocus={{ scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <option value="">Seçiniz</option>
-                    {DURATION_OPTIONS.map((duration) => (
-                      <option key={duration} value={duration}>
-                        {duration}
-                      </option>
-                    ))}
-                  </motion.select>
+                  <Select value={formData.duration} onValueChange={(value) => updateField("duration", value)}>
+                    <SelectTrigger className={`w-full focus-luxury ${errors.duration ? "border-destructive" : ""}`}>
+                      <SelectValue placeholder="Seçiniz" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {DURATION_OPTIONS.map((duration) => (
+                        <SelectItem key={duration} value={duration}>
+                          {duration}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <AnimatePresence>
                     {errors.duration && (
                       <motion.p
@@ -646,7 +672,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
             <Button
               type="submit"
               disabled={isLoading}
-              className="bg-accent hover:bg-accent/90 text-white btn-luxury min-w-[140px]"
+              className="bg-accent hover:bg-accent/90 text-text btn-luxury min-w-[140px]"
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
@@ -659,7 +685,7 @@ export function BookingForm({ venueId, onSubmit, isLoading }: BookingFormProps) 
                 </div>
               ) : currentStep === "review" ? (
                 <div className="flex items-center gap-2">
-                  <Send className="w-4 h-4" />
+                  <CalendarIcon className="w-4 h-4" />
                   Gönder
                 </div>
               ) : (

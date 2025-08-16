@@ -1,12 +1,15 @@
-@import "tailwindcss";
 @import "tw-animate-css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
   --wedding-primary: #f5ebe0; /* Sıcak Fildişi */
   --wedding-secondary: #d5b4a1; /* Yumuşak Boz Kahve */
-  --wedding-accent: #c08552; /* Mat Altın/Şampanya */
+  --wedding-accent: #C88A55; /* Mat Altın/Şampanya (adjusted) */
   --wedding-neutral: #4e443f; /* Koyu Kömür Kahve */
   --wedding-text: #312b27; /* En Koyu Kahve */
 
@@ -16,14 +19,14 @@
   --card-foreground: #312b27;
   --popover: #f5ebe0;
   --popover-foreground: #312b27;
-  --primary: #c08552;
-  --primary-foreground: #f5ebe0;
+  --primary: #C88A55;
+  --primary-foreground: #312b27;
   --secondary: #d5b4a1;
   --secondary-foreground: #312b27;
   --muted: #d5b4a1;
   --muted-foreground: #4e443f;
-  --accent: #c08552;
-  --accent-foreground: #f5ebe0;
+  --accent: #C88A55;
+  --accent-foreground: #312b27;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -37,10 +40,10 @@
   --radius: 0.625rem;
   --sidebar: #f5ebe0;
   --sidebar-foreground: #312b27;
-  --sidebar-primary: #c08552;
-  --sidebar-primary-foreground: #f5ebe0;
-  --sidebar-accent: #c08552;
-  --sidebar-accent-foreground: #f5ebe0;
+  --sidebar-primary: #C88A55;
+  --sidebar-primary-foreground: #312b27;
+  --sidebar-accent: #C88A55;
+  --sidebar-accent-foreground: #312b27;
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 

@@ -9,9 +9,11 @@ import type { Salon } from "../../lib/types"
 
 interface SalonCardProps {
   salon: Salon
+  isSelected?: boolean
+  onSelect?: (salon: Salon) => void
 }
 
-export function SalonCard({ salon }: SalonCardProps) {
+export function SalonCard({ salon, isSelected, onSelect }: SalonCardProps) {
   if (!salon) {
     return null
   }
@@ -26,8 +28,17 @@ export function SalonCard({ salon }: SalonCardProps) {
   const price = typeof rawPrice === "number" ? rawPrice : (rawPrice?.min ?? rawPrice?.max ?? 0)
 
   return (
-    <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.3, ease: "easeOut" }} className="group">
-      <Card className="overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 card-luxury">
+    <motion.div
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="group"
+      onClick={() => onSelect?.(salon)}
+    >
+      <Card
+        className={`overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 card-luxury ${
+          isSelected ? "ring-2 ring-accent ring-offset-2 ring-offset-background" : ""
+        }`}
+      >
         <div className="relative overflow-hidden">
           <Image
             src={

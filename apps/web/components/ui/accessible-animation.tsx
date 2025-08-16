@@ -2,8 +2,8 @@
 
 import { motion, type Variants } from "framer-motion"
 import type { ReactNode } from "react"
-import { useReducedMotion } from "../apps/web/hooks/use-animation"
-import { useLazyAnimation } from "../apps/web/hooks/use-performance"
+import { useReducedMotion } from "@/hooks/use-animation"
+import { useLazyAnimation } from "@/hooks/use-performance"
 
 interface AccessibleAnimationProps {
   children: ReactNode
@@ -61,7 +61,8 @@ export function AccessibleAnimation({
 
   return (
     <motion.div
-      ref={ref}
+      // ref typing from useLazyAnimation can be broader; cast to any to satisfy motion.div generic
+      ref={ref as unknown as React.Ref<HTMLDivElement>}
       className={`${className} animate-gpu`}
       variants={finalAnimation}
       initial="hidden"

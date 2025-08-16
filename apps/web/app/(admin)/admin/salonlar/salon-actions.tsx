@@ -160,7 +160,7 @@ export function SalonActions({ salon }: SalonActionsProps) {
         id: salon.id,
         name: formData.name,
         capacity: parseInt(formData.capacity, 10),
-        imageUrl: finalImageUrl,
+        imageUrl: finalImageUrl ?? "",
       });
 
       setUploadProgress(100);

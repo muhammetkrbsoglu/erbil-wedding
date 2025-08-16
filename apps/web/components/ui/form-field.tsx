@@ -33,7 +33,11 @@ export function FormField({ children, label, error, success, required, className
         </motion.label>
       )}
 
-      <motion.div className="relative" whileFocus={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
+      <motion.div
+        className="relative overflow-hidden"
+        whileFocus={{ scale: 1.005 }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
+      >
         {children}
       </motion.div>
 

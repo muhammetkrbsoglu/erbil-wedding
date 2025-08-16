@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 // Debounced scroll hook for performance
 export function useDebounceScroll(delay = 16) {
   const [scrollY, setScrollY] = useState(0)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +39,7 @@ export function useLazyAnimation(threshold = 0.1, rootMargin = "50px") {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (!entry) return
         if (entry.isIntersecting && !hasAnimated) {
           setIsVisible(true)
           setHasAnimated(true)

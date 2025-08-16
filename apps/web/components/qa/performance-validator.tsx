@@ -30,20 +30,28 @@ export function PerformanceValidator() {
     }
   }, [])
 
+  // Replaced collectMetrics implementation with a TypeScript-safe version
   const collectMetrics = async () => {
-    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming
-    const resources = performance.getEntriesByType("resource")
+    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined
+    if (!navigation) return
+
+    const resources = performance.getEntriesByType("resource") as PerformanceEntry[]
 
     // Calculate metrics
     const loadTime = navigation.loadEventEnd - navigation.fetchStart
     const ttfb = navigation.responseStart - navigation.requestStart
     const domNodes = document.querySelectorAll("*").length
-    const images = resources.filter((r) => r.initiatorType === "img")
-    const scripts = resources.filter((r) => r.initiatorType === "script")
-    const styles = resources.filter((r) => r.initiatorType === "link")
 
-    const jsSize = scripts.reduce((total, script) => total + (script.transferSize || 0), 0)
-    const cssSize = styles.reduce((total, style) => total + (style.transferSize || 0), 0)
+    const isResourceTiming = (r: PerformanceEntry): r is PerformanceResourceTiming => {
+      return (r as PerformanceResourceTiming).initiatorType !== undefined
+    }
+
+    const images = resources.filter((r): r is PerformanceResourceTiming => isResourceTiming(r) && r.initiatorType === "img")
+    const scripts = resources.filter((r): r is PerformanceResourceTiming => isResourceTiming(r) && r.initiatorType === "script")
+    const styles = resources.filter((r): r is PerformanceResourceTiming => isResourceTiming(r) && r.initiatorType === "link")
+
+    const jsSize = scripts.reduce((total: number, script: PerformanceResourceTiming) => total + (script.transferSize || 0), 0)
+    const cssSize = styles.reduce((total: number, style: PerformanceResourceTiming) => total + (style.transferSize || 0), 0)
 
     // Web Vitals (simplified - would need proper implementation)
     let lcp = 0
@@ -52,13 +60,16 @@ export function PerformanceValidator() {
     const fcp = 0
 
     // LCP
-    if ("PerformanceObserver" in window) {
+    if (typeof PerformanceObserver !== "undefined") {
       try {
         const lcpObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries()
-          const lastEntry = entries[entries.length - 1]
-          lcp = lastEntry.startTime
+          const lastEntry = entries[entries.length - 1] as PerformanceEntry | undefined
+          if (lastEntry && (lastEntry as any).startTime !== undefined) {
+            lcp = (lastEntry as any).startTime || 0
+          }
         })
+        // @ts-ignore - observe options type may vary across TS lib versions
         lcpObserver.observe({ type: "largest-contentful-paint", buffered: true })
       } catch (e) {
         // Fallback

@@ -89,7 +89,7 @@ export function SalonShowcaseSection({ salons = [] }: Props) {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-white transition-all duration-300 shadow-lg hover:shadow-xl btn-luxury px-8 py-4 text-lg font-semibold"
+                className="bg-accent hover:bg-accent/90 text-text transition-all duration-300 shadow-lg hover:shadow-xl btn-luxury px-8 py-4 text-lg font-semibold"
               >
                 <motion.span initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                   Tüm Salonları Gör

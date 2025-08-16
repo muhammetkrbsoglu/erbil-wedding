@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import type { ReactNode } from "react"
-import { useReducedMotion } from "../apps/web/hooks/use-animation"
+import { useReducedMotion } from "@/hooks/use-animation"
 
 interface ScrollAnimationProps {
   children: ReactNode

@@ -18,10 +18,6 @@ import {
 import { Textarea } from "../../../../components/ui/textarea";
 import type { Salon } from "@acme/types";
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
 function SubmitButton() {
   const { pending } = useFormStatus();
   
@@ -29,7 +25,7 @@ function SubmitButton() {
     <Button 
       type="submit"
       size="lg" 
-      className="w-full bg-accent hover:bg-accent/90 text-white font-inter font-medium text-lg py-4"
+      className="w-full bg-accent hover:bg-accent/90 text-text font-inter font-medium text-lg py-4"
       disabled={pending}
     >
       {pending ? "Gönderiliyor..." : "Talebi Gönder"}
@@ -37,7 +33,7 @@ function SubmitButton() {
   );
 }
 
-export default function RequestQuotePage({ params }: PageProps) {
+export default function RequestQuotePage({ params }: any) {
   const [salon, setSalon] = useState<Salon | null>(null);
   const [loading, setLoading] = useState(true);
   const [eventType, setEventType] = useState("");
@@ -47,7 +43,7 @@ export default function RequestQuotePage({ params }: PageProps) {
   useEffect(() => {
     async function fetchSalon() {
       try {
-        const { slug } = await params;
+        const { slug } = params as { slug: string };
         const salonData = await getSalonBySlug(slug);
         setSalon(salonData);
       } catch (error) {

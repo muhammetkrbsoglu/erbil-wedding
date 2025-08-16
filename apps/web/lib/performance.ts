@@ -32,8 +32,10 @@ export class PerformanceTracker {
       // Track Largest Contentful Paint
       new PerformanceObserver((list) => {
         const entries = list.getEntries()
-        const lastEntry = entries[entries.length - 1]
-        this.metrics.set("LCP", lastEntry.startTime)
+        const lastEntry = entries[entries.length - 1] as PerformanceEntry | undefined
+        if (lastEntry && (lastEntry as any).startTime !== undefined) {
+          this.metrics.set("LCP", (lastEntry as any).startTime)
+        }
       }).observe({ type: "largest-contentful-paint", buffered: true })
     }
   }
@@ -62,7 +64,9 @@ export class PerformanceTracker {
       performance.measure(label, `${label}-start`, `${label}-end`)
 
       const measure = performance.getEntriesByName(label)[0]
-      this.metrics.set(label, measure.duration)
+      if (measure && (measure as any).duration != null) {
+        this.metrics.set(label, (measure as any).duration)
+      }
     }
   }
 
@@ -75,26 +79,37 @@ export class PerformanceTracker {
     const metrics = this.getMetrics()
 
     // Send to analytics service
-    if (typeof window !== "undefined" && window.gtag) {
+    if (typeof window !== "undefined" && (window as any).gtag) {
       Object.entries(metrics).forEach(([name, value]) => {
-        window.gtag("event", "performance_metric", {
+        ;(window as any).gtag("event", "performance_metric", {
           metric_name: name,
           metric_value: Math.round(value),
         })
       })
     }
   }
+
+  // Allow external callers to record a metric without accessing private fields
+  recordMetric(key: string, value: number) {
+    this.metrics.set(key, value)
+  }
 }
 
 // Bundle size optimization utilities
 export function loadComponentLazy<T>(importFn: () => Promise<{ default: T }>, fallback?: React.ComponentType) {
+  // Constrain T to be a React component type
   return React.lazy(async () => {
     const start = performance.now()
     const module = await importFn()
     const end = performance.now()
 
-    PerformanceTracker.getInstance().metrics.set(`lazy-load-${module.default.name || "component"}`, end - start)
+    try {
+  const name = (module && (module as any).default && (module as any).default.name) || "component"
+  PerformanceTracker.getInstance().recordMetric(`lazy-load-${name}`, end - start)
+    } catch (e) {
+      // ignore metric tracking failures
+    }
 
-    return module
+    return module as unknown as { default: React.ComponentType }
   })
 }

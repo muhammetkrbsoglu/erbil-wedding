@@ -1,4 +1,4 @@
-import type { Salon } from "./types"
+import type { Salon, BookingFormData } from "./types"
 
 export async function getSalons(): Promise<Salon[]> {
   // API hazır olana kadar statik veri döndürüyoruz
@@ -75,4 +75,19 @@ export async function getSalons(): Promise<Salon[]> {
 export async function getSalonBySlug(slug: string): Promise<Salon | null> {
   const salons = await getSalons()
   return salons.find((s) => s.slug === slug) || null
+}
+
+export async function submitBookingRequest(
+  bookingData: BookingFormData & { venueId: string },
+): Promise<{ success: boolean; message: string }> {
+  // API hazır olana kadar mock response döndürüyoruz
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Booking request submitted:", bookingData)
+      resolve({
+        success: true,
+        message: "Randevu talebiniz başarıyla alındı. En kısa sürede size dönüş yapacağız.",
+      })
+    }, 1500) // Simulate API delay
+  })
 }

@@ -9,31 +9,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        // Map semantic tokens to hex palette values (Pudra ve Şampanya)
+        background: '#F5EBE0',
+        foreground: '#312B27',
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: '#D5B4A1',
+          foreground: '#312B27',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: '#F5EBE0',
+          foreground: '#312B27',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#F5EBE0',
+          foreground: '#312B27',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: '#D5B4A1',
+          foreground: '#312B27',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: '#C88A55',
+          foreground: '#312B27',
         },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        neutral: '#4E443F',
+        text: '#312B27',
+        border: '#D5B4A1',
+        input: '#FFFFFF',
+  ring: '#C88A55',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -46,17 +46,17 @@ export default async function SalonlarPage() {
       {/* CTA Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl">
+          <div className="bg-secondary/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl">
             <h2 className="text-3xl md:text-4xl font-bold text-text mb-6">Hayalinizdeki Düğünü Planlayalım</h2>
             <p className="text-lg text-neutral mb-8 max-w-2xl mx-auto">
               Uzman ekibimiz, özel gününüzü mükemmel kılmak için her detayı özenle planlıyor. Hemen iletişime geçin ve
               ücretsiz keşif toplantınızı ayarlayın.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              <button className="bg-accent hover:bg-accent/90 text-text px-8 py-3 rounded-lg font-semibold transition-colors">
                 Ücretsiz Keşif
               </button>
-              <button className="border-2 border-accent text-accent hover:bg-accent hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              <button className="border-2 border-accent text-accent hover:bg-accent hover:text-text px-8 py-3 rounded-lg font-semibold transition-colors">
                 Fiyat Teklifi Al
               </button>
             </div>

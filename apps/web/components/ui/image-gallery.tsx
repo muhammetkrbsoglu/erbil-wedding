@@ -61,8 +61,8 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
               className="relative w-full h-full"
             >
               <Image
-                src={images[currentIndex].src || "/placeholder.svg"}
-                alt={images[currentIndex].alt}
+                src={(images[currentIndex] && images[currentIndex].src) || "/placeholder.svg"}
+                alt={(images[currentIndex] && images[currentIndex].alt) || ""}
                 fill
                 className="object-cover"
               />
@@ -75,12 +75,12 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
                 transition={{ duration: 0.3 }}
               >
                 <motion.div
-                  className="bg-white/90 backdrop-blur-sm rounded-full p-3"
+                  className="bg-secondary/90 backdrop-blur-sm rounded-full p-3"
                   initial={{ scale: 0.8 }}
                   whileHover={{ scale: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <ZoomIn className="w-6 h-6 text-foreground" />
+                  <ZoomIn className="w-6 h-6 text-text" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -90,7 +90,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
           {images.length > 1 && (
             <>
               <motion.button
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-secondary/90 backdrop-blur-sm rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={(e) => {
                   e.stopPropagation()
                   prevImage()
@@ -98,11 +98,11 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronLeft className="w-5 h-5 text-foreground" />
+                <ChevronLeft className="w-5 h-5 text-text" />
               </motion.button>
 
               <motion.button
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-secondary/90 backdrop-blur-sm rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={(e) => {
                   e.stopPropagation()
                   nextImage()
@@ -110,7 +110,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight className="w-5 h-5 text-foreground" />
+                <ChevronRight className="w-5 h-5 text-text" />
               </motion.button>
             </>
           )}
@@ -154,7 +154,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
           >
             {/* Close Button */}
             <motion.button
-              className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm rounded-full p-2 text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute top-4 right-4 bg-secondary/20 backdrop-blur-sm rounded-full p-2 text-text hover:bg-secondary/40 transition-colors z-10"
               onClick={() => setIsLightboxOpen(false)}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -182,8 +182,8 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
                   className="relative w-full h-full"
                 >
                   <Image
-                    src={images[lightboxIndex].src || "/placeholder.svg"}
-                    alt={images[lightboxIndex].alt}
+                    src={(images[lightboxIndex] && images[lightboxIndex].src) || "/placeholder.svg"}
+                    alt={(images[lightboxIndex] && images[lightboxIndex].alt) || ""}
                     fill
                     className="object-contain"
                   />
@@ -194,7 +194,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
               {images.length > 1 && (
                 <>
                   <motion.button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/20 transition-colors"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-secondary/10 backdrop-blur-sm rounded-full p-3 text-text hover:bg-secondary/20 transition-colors"
                     onClick={prevLightboxImage}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -203,7 +203,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
                   </motion.button>
 
                   <motion.button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/20 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-secondary/10 backdrop-blur-sm rounded-full p-3 text-text hover:bg-secondary/20 transition-colors"
                     onClick={nextLightboxImage}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -215,7 +215,7 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
 
               {/* Image Counter */}
               <motion.div
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm"
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-secondary/10 backdrop-blur-sm rounded-full px-4 py-2 text-text text-sm"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -224,9 +224,9 @@ export function ImageGallery({ images, className }: ImageGalleryProps) {
               </motion.div>
 
               {/* Caption */}
-              {images[lightboxIndex].caption && (
+              {images[lightboxIndex] && images[lightboxIndex].caption && (
                 <motion.div
-                  className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 text-white text-center max-w-md"
+                  className="absolute bottom-16 left-1/2 -translate-x-1/2 bg-secondary/10 backdrop-blur-sm rounded-lg px-4 py-2 text-text text-center max-w-md"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}

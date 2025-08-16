@@ -39,7 +39,7 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
       style={style}
     >
       <Link href={`/salonlar/${slug}`} className="block">
-        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+  <div className="card-luxury border-0 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
           {/* Image Area */}
           <div
             className="relative h-64 overflow-hidden"
@@ -48,7 +48,7 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
           >
             {/* Loading Skeleton */}
             {!isImageLoaded && (
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-r from-muted via-muted/80 to-muted animate-pulse" />
             )}
 
             {/* Main Image */}
@@ -69,7 +69,7 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
             {/* Video Play Button Overlay */}
             {hasVideo && showVideoOverlay && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <button className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-2xl hover:scale-110 transition-transform">
+                <button className="bg-secondary/90 backdrop-blur-sm rounded-full p-4 shadow-2xl hover:scale-110 transition-transform">
                   <Play className="w-8 h-8 text-accent ml-1" fill="currentColor" />
                 </button>
               </div>
@@ -77,9 +77,9 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
 
             {/* Rating Badge */}
             {rating && (
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <span className="text-sm font-semibold">{rating}</span>
+              <div className="absolute top-4 right-4 bg-secondary/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                <Star className="w-4 h-4 text-accent" />
+                <span className="text-sm font-semibold text-text">{rating}</span>
               </div>
             )}
           </div>
@@ -87,10 +87,10 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
           {/* Content Area */}
           <div className="p-6 space-y-4">
             {/* Salon Name */}
-            <h3 className="text-xl font-bold text-gray-900 leading-tight">{name}</h3>
+            <h3 className="text-xl font-bold text-text leading-tight">{name}</h3>
 
             {/* Info Row */}
-            <div className="flex items-center justify-between text-sm text-gray-600">
+            <div className="flex items-center justify-between text-sm text-neutral">
               <div className="flex items-center gap-2">
                 <Users size={16} className="text-accent" />
                 <span>Maks. {capacity} Kişi</span>
@@ -105,11 +105,11 @@ export const SalonCard = ({ salon, className, style }: SalonCardProps) => {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-2">
+              <div className="pt-2">
               <Button
                 variant="outline"
                 size="default"
-                className="w-full font-medium group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all duration-300 bg-transparent"
+                className="w-full font-medium group-hover:bg-accent group-hover:text-text group-hover:border-accent transition-all duration-300 bg-transparent"
               >
                 Detayları İncele
               </Button>

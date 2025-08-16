@@ -15,7 +15,7 @@ export function ProgressIndicator({ steps, className }: ProgressIndicatorProps) 
           <motion.div
             className={`relative flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors ${
               step.completed
-                ? "bg-accent border-accent text-white"
+                ? "bg-accent border-accent text-text"
                 : step.active
                   ? "border-accent text-accent bg-accent/10"
                   : "border-muted text-muted-foreground"

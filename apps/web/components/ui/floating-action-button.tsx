@@ -51,7 +51,7 @@ export function FloatingActionButton() {
             {actions.map((action, index) => (
               <motion.button
                 key={action.label}
-                className={`flex items-center gap-3 ${action.color || "bg-accent"} text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow group`}
+                className={`flex items-center gap-3 ${action.color || "bg-accent"} text-text px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow group`}
                 onClick={action.onClick}
                 initial={{ opacity: 0, x: 20, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -72,7 +72,7 @@ export function FloatingActionButton() {
 
       {/* Main FAB Button */}
       <motion.button
-        className="w-14 h-14 bg-accent text-white rounded-full shadow-lg hover:shadow-xl flex items-center justify-center"
+        className="w-14 h-14 bg-accent text-text rounded-full shadow-lg hover:shadow-xl flex items-center justify-center"
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

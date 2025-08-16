@@ -251,7 +251,7 @@ export function QAChecklist() {
       case "warning":
         return <AlertTriangle className="w-4 h-4 text-yellow-500" />
       default:
-        return <div className="w-4 h-4 rounded-full bg-gray-300" />
+  return <div className="w-4 h-4 rounded-full bg-neutral" />
     }
   }
 
@@ -264,7 +264,7 @@ export function QAChecklist() {
       case "warning":
         return "bg-yellow-100 text-yellow-800"
       default:
-        return "bg-gray-100 text-gray-800"
+  return "bg-secondary/10 text-neutral"
     }
   }
 
@@ -273,8 +273,12 @@ export function QAChecklist() {
       if (!acc[item.category]) {
         acc[item.category] = { total: 0, pass: 0, fail: 0, warning: 0, pending: 0 }
       }
-      acc[item.category].total++
-      acc[item.category][item.status]++
+      // safe increments with existence checks
+      const bucket = acc[item.category]
+      if (bucket) {
+        bucket.total = (bucket.total || 0) + 1
+        bucket[item.status] = (bucket[item.status] || 0) + 1
+      }
       return acc
     },
     {} as Record<string, Record<string, number>>,

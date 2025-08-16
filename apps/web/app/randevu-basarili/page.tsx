@@ -50,7 +50,7 @@ export default function ReservationSuccessPage() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-text">
               <Link href="/">
                 Ana Sayfaya Dön
               </Link>

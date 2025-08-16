@@ -50,7 +50,7 @@ export default async function AdminSalonsPage() {
                 <TableCell>{salon.name}</TableCell>
                 <TableCell>{salon.capacity}</TableCell>
                 <TableCell>
-                  {salon.createdAt ? new Date(salon.createdAt).toLocaleDateString() : new Date().toLocaleDateString()}
+                  {'createdAt' in salon && salon.createdAt ? new Date((salon as any).createdAt).toLocaleDateString() : new Date().toLocaleDateString()}
                 </TableCell>
                 <TableCell className="text-right">
                   <SalonActions salon={salon} />

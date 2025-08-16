@@ -97,7 +97,13 @@ export function VenueDetails({ venue }: VenueDetailsProps) {
               <div className="bg-primary/10 rounded-xl p-4">
                 <h3 className="font-semibold text-text mb-2">Fiyat Aralığı</h3>
                 <div className="text-2xl font-bold text-accent">
-                  ₺{venue.price.min.toLocaleString()} - ₺{venue.price.max.toLocaleString()}
+                  {typeof venue.price === "number" ? (
+                    <>₺{venue.price.toLocaleString()}</>
+                  ) : (
+                    <>
+                      ₺{venue.price.min.toLocaleString()} - ₺{venue.price.max.toLocaleString()}
+                    </>
+                  )}
                 </div>
                 <p className="text-sm text-neutral mt-1">
                   *Fiyatlar sezon ve etkinlik türüne göre değişiklik gösterebilir

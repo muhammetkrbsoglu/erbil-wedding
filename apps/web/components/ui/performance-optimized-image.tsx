@@ -34,7 +34,7 @@ export function PerformanceOptimizedImage({
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as unknown as React.Ref<HTMLDivElement>}
       className={`relative overflow-hidden ${className}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}

@@ -4,7 +4,6 @@ import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { Header } from "../components/layout/Header"
 import { SEOProvider } from "../components/seo/seo-provider"
-import { PerformanceMonitor } from "../components/ui/performance-monitor"
 import { MobileExperienceProvider } from "../components/mobile/mobile-experience-provider"
 
 const inter = Inter({
@@ -36,7 +35,6 @@ export default function RootLayout({
           <MobileExperienceProvider>
             <Header />
             <main>{children}</main>
-            <PerformanceMonitor enabled={process.env.NODE_ENV === "development"} />
           </MobileExperienceProvider>
         </SEOProvider>
       </body>

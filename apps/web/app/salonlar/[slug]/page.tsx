@@ -1,12 +1,8 @@
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 import { getSalonBySlug, getSalons } from "@/lib/api"
 import SalonDetailClient from "./SalonDetailClient"
 
-interface SalonDetailPageProps {
-  params: {
-    slug: string
-  }
-}
 
 export async function generateStaticParams() {
   const salons = await getSalons()
@@ -15,7 +11,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: SalonDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   const salon = await getSalonBySlug(params.slug)
 
   if (!salon) {
@@ -33,8 +29,11 @@ export async function generateMetadata({ params }: SalonDetailPageProps): Promis
   }
 }
 
-export default async function SalonDetailPage({ params }: SalonDetailPageProps) {
-  const salon = await getSalonBySlug(params.slug)
+export default async function SalonDetailPage({ params }: any) {
+  const salon = await getSalonBySlug(params.slug as string)
+  if (!salon) {
+    notFound()
+  }
 
   return <SalonDetailClient salon={salon} />
 }

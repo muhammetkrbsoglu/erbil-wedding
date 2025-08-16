@@ -9,6 +9,8 @@ import { toast } from "@/hooks/use-toast"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { motion } from "framer-motion"
+import { CheckCircle } from "lucide-react"
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "İsim en az 2 karakter olmalıdır" }),
@@ -21,6 +23,7 @@ type ContactFormSchema = z.infer<typeof contactFormSchema>
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
@@ -29,16 +32,13 @@ export function ContactForm() {
   async function onSubmit(data: ContactFormSchema) {
     try {
       setIsSubmitting(true)
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      toast({
-        title: "Başarılı!",
-        description: "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.",
-      })
+      setSubmitStatus("success")
       form.reset()
     } catch (error) {
       console.error("Form gönderme hatası:", error)
+      setSubmitStatus("error")
       toast({
         title: "Hata!",
         description: "Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
@@ -47,6 +47,54 @@ export function ContactForm() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (submitStatus === "success") {
+    return (
+      <motion.div
+        className="flex items-center justify-center h-full text-center py-12"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <div>
+          <motion.div
+            className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
+            <CheckCircle className="w-10 h-10 text-green-600" />
+          </motion.div>
+          <motion.h3
+            className="text-xl font-semibold text-text mb-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            Talebiniz Başarıyla Alındı!
+          </motion.h3>
+          <motion.p
+            className="text-neutral"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            En kısa sürede size dönüş yapacağız.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6"
+          >
+            <Button onClick={() => setSubmitStatus("idle")} variant="outline" className="btn-luxury">
+              Yeni Mesaj Gönder
+            </Button>
+          </motion.div>
+        </div>
+      </motion.div>
+    )
   }
 
   return (
@@ -60,7 +108,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.name && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm" style={{ color: "#C88A55" }}>
             {form.formState.errors.name.message}
           </p>
         )}
@@ -76,7 +124,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.email && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm" style={{ color: "#C88A55" }}>
             {form.formState.errors.email.message}
           </p>
         )}
@@ -92,7 +140,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.phone && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm" style={{ color: "#C88A55" }}>
             {form.formState.errors.phone.message}
           </p>
         )}
@@ -108,7 +156,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.message && (
-          <p className="text-sm" style={{ color: "#C08552" }}>
+          <p className="text-sm" style={{ color: "#C88A55" }}>
             {form.formState.errors.message.message}
           </p>
         )}
@@ -117,8 +165,8 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full"
-        style={{ backgroundColor: "#C08552", color: "white" }}
+        className="w-full bg-accent text-text"
+        style={{ backgroundColor: "#C88A55", color: "#312B27" }}
       >
         {isSubmitting ? "Gönderiliyor..." : "Gönder"}
       </Button>

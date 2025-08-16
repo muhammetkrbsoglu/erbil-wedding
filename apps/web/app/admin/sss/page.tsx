@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/src/components/ui/accordion'
-import { getAdminFAQs, createFAQ, updateFAQ, deleteFAQ } from '@/src/lib/api/faq'
-import { useToast } from "@/src/components/ui/use-toast"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { getAdminFAQs, createFAQ, updateFAQ, deleteFAQ } from '@/lib/api/faq'
+import { useToast } from "@/hooks/use-toast"
 
 type FAQ = {
   id: string

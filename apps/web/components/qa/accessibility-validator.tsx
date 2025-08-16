@@ -86,13 +86,15 @@ export function AccessibilityValidator() {
       for (let i = 1; i < headingLevels.length; i++) {
         const current = headingLevels[i]
         const previous = headingLevels[i - 1]
-        if (current > previous + 1) {
-          foundIssues.push({
-            type: "warning",
-            category: "Headings",
-            description: `Heading level skipped (h${previous} to h${current})`,
-            suggestion: "Don't skip heading levels for proper document structure",
-          })
+        if (typeof current === "number" && typeof previous === "number") {
+          if (current > previous + 1) {
+            foundIssues.push({
+              type: "warning",
+              category: "Headings",
+              description: `Heading level skipped (h${previous} to h${current})`,
+              suggestion: "Don't skip heading levels for proper document structure",
+            })
+          }
         }
       }
     }

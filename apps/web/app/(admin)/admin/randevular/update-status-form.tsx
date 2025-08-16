@@ -27,7 +27,7 @@ interface Reservation {
     name: string;
     slug: string;
     capacity: number;
-    imageUrl: string;
+  imageUrl?: string;
     createdAt: Date;
     updatedAt: Date;
   };

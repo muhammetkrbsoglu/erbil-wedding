@@ -20,6 +20,12 @@ export function LuxuryMobileHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+
+  const isActivePath = (href: string) => {
+    if (!href) return false
+    if (href === "/") return pathname === "/"
+    return pathname === href || pathname.startsWith(href + "/")
+  }
   const { isMobile, safeAreaInsets } = useMobileExperience()
 
   useEffect(() => {
@@ -57,18 +63,18 @@ export function LuxuryMobileHeader() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = isActivePath(item.href)
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     className={cn(
                       "px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg",
-                      "hover:bg-white/10 hover:backdrop-blur-sm",
+                      "hover:bg-primary/10 hover:backdrop-blur-sm",
                       isActive
                         ? scrolled
                           ? "bg-accent text-accent-foreground"
-                          : "bg-white/20 text-white backdrop-blur-sm"
+                          : "bg-secondary/20 text-text backdrop-blur-sm"
                         : scrolled
                           ? "text-foreground hover:text-accent"
                           : "text-white/90 hover:text-white",
@@ -88,7 +94,7 @@ export function LuxuryMobileHeader() {
                 variant="ghost"
                 className={cn(
                   "touch-target transition-all duration-300",
-                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-white/10 backdrop-blur-sm",
+                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-primary/10 backdrop-blur-sm",
                 )}
                 asChild
               >
@@ -103,7 +109,7 @@ export function LuxuryMobileHeader() {
                 variant="ghost"
                 className={cn(
                   "touch-target transition-all duration-300 md:hidden",
-                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-white/10 backdrop-blur-sm",
+                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-primary/10 backdrop-blur-sm",
                 )}
               >
                 <Heart className="w-5 h-5" />
@@ -115,7 +121,7 @@ export function LuxuryMobileHeader() {
                 variant="ghost"
                 className={cn(
                   "md:hidden touch-target transition-all duration-300",
-                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-white/10 backdrop-blur-sm",
+                  scrolled ? "text-foreground hover:bg-accent/10" : "text-white hover:bg-primary/10 backdrop-blur-sm",
                 )}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Menüyü Aç"
@@ -144,7 +150,7 @@ export function LuxuryMobileHeader() {
           <div className="relative bg-background/95 backdrop-blur-md border-b border-border/50 shadow-xl">
             <div className="px-4 py-6 space-y-4">
               {navigation.map((item) => {
-                const isActive = pathname === item.href
+                const isActive = isActivePath(item.href)
                 return (
                   <Link
                     key={item.name}
@@ -157,6 +163,7 @@ export function LuxuryMobileHeader() {
                         ? "bg-accent text-accent-foreground shadow-sm"
                         : "text-foreground hover:bg-accent/10 hover:text-accent active:scale-95",
                     )}
+                    aria-current={isActive ? "page" : undefined}
                   >
                     {item.name}
                   </Link>

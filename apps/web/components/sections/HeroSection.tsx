@@ -56,7 +56,7 @@ export function HeroSection() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg font-semibold btn-luxury hover-lift"
+                className="bg-accent hover:bg-accent/90 text-text px-8 py-4 text-lg font-semibold btn-luxury hover-lift"
               >
                 Salonları Keşfet
               </Button>
@@ -66,7 +66,7 @@ export function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-accent text-accent hover:bg-accent hover:text-white px-8 py-4 text-lg font-semibold btn-luxury bg-transparent"
+                className="border-2 border-accent text-accent hover:bg-accent hover:text-text px-8 py-4 text-lg font-semibold btn-luxury bg-transparent"
               >
                 Ücretsiz Keşif
               </Button>

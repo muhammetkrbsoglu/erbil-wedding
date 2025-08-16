@@ -15,12 +15,12 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+    <div className="min-h-screen flex items-center justify-center bg-primary">
+      <div className="bg-secondary/20 p-8 rounded-lg shadow-md max-w-md w-full">
         <h2 className="text-2xl font-bold text-red-600 mb-4">
           Bir şeyler yanlış gitti!
         </h2>
-        <p className="text-gray-600 mb-6">
+          <p className="text-neutral mb-6">
           {error.message || 'Beklenmeyen bir hata oluştu.'}
         </p>
         <div className="flex gap-4">
@@ -32,7 +32,7 @@ export default function GlobalError({
           </button>
           <a
             href="/"
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors"
+            className="bg-neutral text-white px-4 py-2 rounded hover:opacity-90 transition-colors"
           >
             Ana Sayfaya Dön
           </a>

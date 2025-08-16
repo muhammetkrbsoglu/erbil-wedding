@@ -52,7 +52,7 @@ export const BrandStorySection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="font-inter font-medium bg-transparent hover:bg-accent hover:text-white transition-all duration-300 hover:scale-105"
+                  className="font-inter font-medium bg-transparent hover:bg-accent hover:text-text transition-all duration-300 hover:scale-105"
                 >
                   Hikayemizi Keşfedin
                 </Button>

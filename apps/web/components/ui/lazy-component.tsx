@@ -26,6 +26,7 @@ export function LazyComponent({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (!entry) return
         if (entry.isIntersecting && !hasLoaded) {
           setIsVisible(true)
           setHasLoaded(true)

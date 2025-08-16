@@ -30,7 +30,7 @@ const pageTransition = {
 
 export function PageTransition({ children }: PageTransitionProps) {
   return (
-    <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+  <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition as any}>
       {children}
     </motion.div>
   )

@@ -76,7 +76,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title, poster }: VideoMo
         >
           {/* Close Button */}
           <motion.button
-            className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm rounded-full p-2 text-white hover:bg-white/20 transition-colors z-10"
+            className="absolute top-4 right-4 bg-secondary/20 backdrop-blur-sm rounded-full p-2 text-text hover:bg-secondary/40 transition-colors z-10"
             onClick={onClose}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -115,22 +115,22 @@ export function VideoModal({ isOpen, onClose, videoUrl, title, poster }: VideoMo
             >
               {/* Play/Pause Button */}
               <motion.button
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-secondary/20 backdrop-blur-sm rounded-full p-4 hover:bg-secondary/30 transition-colors"
                 onClick={togglePlay}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {isPlaying ? (
-                  <Pause className="w-8 h-8 text-white" fill="currentColor" />
+                  <Pause className="w-8 h-8 text-text" fill="currentColor" />
                 ) : (
-                  <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+                  <Play className="w-8 h-8 text-text ml-1" fill="currentColor" />
                 )}
               </motion.button>
 
               {/* Bottom Controls */}
               <div className="absolute bottom-0 left-0 right-0 p-4 space-y-2">
                 {/* Progress Bar */}
-                <div className="w-full h-1 bg-white/30 rounded-full cursor-pointer" onClick={handleProgressClick}>
+                <div className="w-full h-1 bg-secondary/30 rounded-full cursor-pointer" onClick={handleProgressClick}>
                   <motion.div
                     className="h-full bg-accent rounded-full"
                     style={{ width: `${progress}%` }}
@@ -144,7 +144,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title, poster }: VideoMo
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <motion.button
-                      className="text-white hover:text-accent transition-colors"
+                      className="text-text hover:text-accent transition-colors"
                       onClick={togglePlay}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
@@ -153,7 +153,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title, poster }: VideoMo
                     </motion.button>
 
                     <motion.button
-                      className="text-white hover:text-accent transition-colors"
+                      className="text-text hover:text-accent transition-colors"
                       onClick={toggleMute}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
@@ -164,7 +164,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title, poster }: VideoMo
 
                   {title && (
                     <motion.h3
-                      className="text-white font-medium"
+                      className="text-text font-medium"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}

@@ -33,14 +33,18 @@ export function GestureHandler({
   const [initialDistance, setInitialDistance] = useState<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const getTouchDistance = (touch1: Touch, touch2: Touch) => {
+  // Accept any touch-like object (React.Touch vs DOM Touch) and guard properties
+  const getTouchDistance = (touch1?: any, touch2?: any) => {
+    if (!touch1 || !touch2 || touch1.clientX == null || touch2.clientX == null) return 0
     return Math.sqrt(Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2))
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0]
-    setTouchEnd(null)
-    setTouchStart({ x: touch.clientX, y: touch.clientY })
+  if (!e.touches || e.touches.length === 0) return
+  const touch = e.touches[0]
+  if (!touch) return
+  setTouchEnd(null)
+  setTouchStart({ x: touch.clientX, y: touch.clientY })
 
     // Handle pinch gesture
     if (e.touches.length === 2 && onPinch) {
@@ -60,14 +64,20 @@ export function GestureHandler({
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    const touch = e.touches[0]
-    setTouchEnd({ x: touch.clientX, y: touch.clientY })
+  if (!e.touches || e.touches.length === 0) return
+  const touch = e.touches[0]
+  if (!touch) return
+  setTouchEnd({ x: touch.clientX, y: touch.clientY })
 
     // Handle pinch gesture
     if (e.touches.length === 2 && onPinch && initialDistance > 0) {
-      const currentDistance = getTouchDistance(e.touches[0], e.touches[1])
-      const scale = currentDistance / initialDistance
-      onPinch(scale)
+      const t0 = e.touches[0]
+      const t1 = e.touches[1]
+      if (t0 && t1) {
+        const currentDistance = getTouchDistance(t0, t1)
+        const scale = currentDistance / initialDistance
+        onPinch(scale)
+      }
     }
   }
 

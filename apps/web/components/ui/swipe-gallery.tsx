@@ -26,12 +26,18 @@ export function SwipeGallery({ images, className }: SwipeGalleryProps) {
   const minSwipeDistance = 50
 
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
+  setTouchEnd(null)
+  if (!e.targetTouches || e.targetTouches.length === 0) return
+  const t = e.targetTouches[0]
+  if (!t) return
+  setTouchStart(t.clientX)
   }
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+  if (!e.targetTouches || e.targetTouches.length === 0) return
+  const t = e.targetTouches[0]
+  if (!t) return
+  setTouchEnd(t.clientX)
   }
 
   const onTouchEnd = () => {
@@ -120,7 +126,7 @@ export function SwipeGallery({ images, className }: SwipeGalleryProps) {
             onClick={() => setCurrentIndex(index)}
             aria-label={`Go to image ${index + 1}`}
           >
-            <div className={cn("w-2 h-2 rounded-full", currentIndex === index ? "bg-white" : "bg-current")} />
+            <div className={cn("w-2 h-2 rounded-full", currentIndex === index ? "bg-primary" : "bg-current")} />
           </button>
         ))}
       </div>

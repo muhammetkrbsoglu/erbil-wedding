@@ -62,6 +62,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const isActivePath = (href: string) => {
+    if (!href) return false
+    if (href === "/") return pathname === "/"
+    return pathname === href || pathname.startsWith(href + "/")
+  }
+
   const handleNavClick = (item: (typeof navigation)[0], e: React.MouseEvent) => {
     if (item.scrollTo && pathname === "/") {
       e.preventDefault()
@@ -128,7 +134,7 @@ export function Header() {
               transition={{ duration: 0.5, delay: 0.3, staggerChildren: 0.1 }}
             >
               {navigation.map((item, index) => {
-                const isActive = pathname === item.href
+                const isActive = isActivePath(item.href)
                 const hasDropdown = item.dropdown && item.dropdown.length > 0
 
                 return (
@@ -142,9 +148,7 @@ export function Header() {
                         <motion.button
                           className={cn(
                             "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg relative overflow-hidden",
-                            isActive
-                              ? "bg-accent text-white font-semibold shadow-lg"
-                              : "text-foreground hover:text-accent hover:bg-accent/10",
+                            isActive ? "bg-accent text-text font-semibold shadow-lg" : "text-foreground hover:text-accent hover:bg-accent/10",
                           )}
                           onClick={() => handleDropdownToggle(item.name)}
                           variants={buttonPress}
@@ -170,16 +174,14 @@ export function Header() {
                       ) : (
                         <motion.div variants={buttonPress} whileTap="tap">
                           <Link
-                            href={item.href}
-                            onClick={(e) => handleNavClick(item, e)}
-                            className={cn(
-                              "block px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg relative overflow-hidden",
-                              isActive
-                                ? "bg-accent text-white font-semibold shadow-lg"
-                                : "text-foreground hover:text-accent hover:bg-accent/10",
-                            )}
-                            aria-current={isActive ? "page" : undefined}
-                          >
+                              href={item.href}
+                              onClick={(e) => handleNavClick(item, e)}
+                              className={cn(
+                                "block px-3 py-2 text-sm font-medium transition-all duration-300 rounded-lg relative overflow-hidden",
+                                isActive ? "bg-accent text-text font-semibold shadow-lg" : "text-foreground hover:text-accent hover:bg-accent/10",
+                              )}
+                              aria-current={isActive ? "page" : undefined}
+                            >
                             <motion.span whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                               {item.name}
                             </motion.span>
@@ -308,7 +310,7 @@ export function Header() {
                         className={cn(
                           "block px-3 py-3 text-base font-medium transition-all duration-300 rounded-lg relative overflow-hidden",
                           isActive
-                            ? "bg-accent text-white font-semibold shadow-lg"
+                            ? "bg-accent text-text font-semibold shadow-lg"
                             : "text-foreground hover:text-accent hover:bg-accent/10",
                         )}
                         aria-current={isActive ? "page" : undefined}

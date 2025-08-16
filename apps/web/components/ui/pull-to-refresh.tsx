@@ -21,8 +21,9 @@ export function PullToRefresh({ children, onRefresh, className, threshold = 80 }
   const containerRef = useRef<HTMLDivElement>(null)
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (window.scrollY === 0) {
-      startY.current = e.touches[0].clientY
+    if (window.scrollY === 0 && e.touches && e.touches.length > 0) {
+      const t = e.touches[0]
+      if (t) startY.current = t.clientY
     }
   }, [])
 
@@ -30,7 +31,10 @@ export function PullToRefresh({ children, onRefresh, className, threshold = 80 }
     (e: React.TouchEvent) => {
       if (window.scrollY > 0 || isRefreshing) return
 
-      const currentY = e.touches[0].clientY
+  if (!e.touches || e.touches.length === 0) return
+  const t = e.touches[0]
+  if (!t) return
+  const currentY = t.clientY
       const distance = Math.max(0, currentY - startY.current)
 
       if (distance > 0) {

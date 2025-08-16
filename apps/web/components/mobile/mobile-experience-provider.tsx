@@ -6,9 +6,6 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { InstallPrompt } from "../pwa/install-prompt"
 import { OfflineIndicator } from "../pwa/offline-indicator"
 import { AppNavigation } from "../pwa/app-navigation"
-import { QAChecklist } from "../qa/qa-checklist"
-import { PerformanceValidator } from "../qa/performance-validator"
-import { AccessibilityValidator } from "../qa/accessibility-validator"
 
 interface MobileExperienceContextType {
   isMobile: boolean
@@ -89,15 +86,6 @@ export function MobileExperienceProvider({ children }: { children: React.ReactNo
       <InstallPrompt />
       <OfflineIndicator />
       <AppNavigation />
-
-      {/* Development tools */}
-      {process.env.NODE_ENV === "development" && (
-        <>
-          <QAChecklist />
-          <PerformanceValidator />
-          <AccessibilityValidator />
-        </>
-      )}
     </MobileExperienceContext.Provider>
   )
 }

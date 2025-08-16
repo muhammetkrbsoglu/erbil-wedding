@@ -11,19 +11,32 @@ const config: Omit<Config, "content"> = {
     },
     extend: {
       colors: {
+        // Semantic color palette (Pudra ve Şampanya)
+        // Primary: warm ivory for large backgrounds
+        primary: {
+          DEFAULT: "#F5EBE0",
+        },
+        // Secondary: soft beige/brown for cards and secondary elements
+        secondary: {
+          DEFAULT: "#D5B4A1",
+          foreground: "#312B27",
+        },
+        // Accent: matte gold / champagne for CTAs and important links
+        accent: {
+          DEFAULT: "#C88A55",
+          foreground: "#312B27",
+        },
+        // Neutral: dark charcoal brown for icons/secondary text
+        neutral: "#4E443F",
+        // Text: darkest brown for main readable text
+        text: "#312B27",
+
+        // Legacy / lower-level tokens (keep pointing to CSS vars where components expect them)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -31,10 +44,6 @@ const config: Omit<Config, "content"> = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

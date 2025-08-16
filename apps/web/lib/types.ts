@@ -14,10 +14,12 @@ export interface Salon {
   rating?: number
   hasVideo?: boolean
   /** Price can be a single number (e.g. per event) or a range with min/max */
-  price?: number | {
-    min: number
-    max: number
-  }
+  price?:
+    | number
+    | {
+        min: number
+        max: number
+      }
   amenities?: string[]
   specifications?: {
     area: string

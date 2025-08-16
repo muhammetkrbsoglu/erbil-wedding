@@ -3,19 +3,21 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { SalonCard } from "../cards/SalonCard"
+import type { Salon as SharedSalon } from "@/lib/types"
 import { Button } from "../ui/button"
 import { FadeInUp } from "../ui/animation-wrapper"
 import { staggerContainer, staggerItem, scaleOnHover } from "../../lib/animations"
 
 interface Salon {
   id: string
+  slug?: string
   name: string
   capacity: number
   location: string
   price: number
-  images: string[]
-  features: string[]
-  description: string
+  images?: string[]
+  features?: string[]
+  description?: string
 }
 
 interface Props {
@@ -81,7 +83,8 @@ export default function SalonShowcaseClient({ salons }: Props) {
           {salons.map((salon, index) => (
             <motion.div key={salon.id} variants={staggerItem} whileHover="hover" className="group">
               <motion.div variants={scaleOnHover} className="h-full">
-                <SalonCard salon={salon} />
+                {/* cast to shared Salon type to satisfy SalonCard prop */}
+                <SalonCard salon={salon as unknown as SharedSalon} />
               </motion.div>
             </motion.div>
           ))}
@@ -99,7 +102,7 @@ export default function SalonShowcaseClient({ salons }: Props) {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-white transition-all duration-300 shadow-lg hover:shadow-xl btn-luxury px-8 py-4 text-lg font-semibold"
+                className="bg-accent hover:bg-accent/90 text-text transition-all duration-300 shadow-lg hover:shadow-xl btn-luxury px-8 py-4 text-lg font-semibold"
               >
                 <motion.span initial={{ x: 0 }} whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                   Tüm Salonları Gör
