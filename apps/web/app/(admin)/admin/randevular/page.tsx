@@ -6,13 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "../../../../components/ui/table";
-import { PrismaClient } from "@acme/db";
+import { db } from "@acme/db";
 import type { Reservation, Salon } from "@acme/types";
 import { UpdateStatusForm } from "./update-status-form";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-
-const prisma = new PrismaClient();
 
 type ReservationWithSalon = Omit<Reservation, 'createdAt' | 'updatedAt'> & {
   createdAt: Date;
@@ -24,7 +22,7 @@ type ReservationWithSalon = Omit<Reservation, 'createdAt' | 'updatedAt'> & {
 };
 
 async function getReservations() {
-  return await prisma.reservation.findMany({
+  return await db.reservation.findMany({
     include: {
       salon: true,
     },
