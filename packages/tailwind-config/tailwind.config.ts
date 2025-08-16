@@ -23,7 +23,7 @@ const config: Omit<Config, "content"> = {
         },
         // Accent: matte gold / champagne for CTAs and important links
         accent: {
-          DEFAULT: "#C88A55",
+          DEFAULT: "#C08552",
           foreground: "#312B27",
         },
         // Neutral: dark charcoal brown for icons/secondary text

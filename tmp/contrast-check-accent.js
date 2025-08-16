@@ -26,7 +26,7 @@ function contrast(hex1,hex2){
 const palette = {
   primary: '#F5EBE0',
   secondary: '#D5B4A1',
-  accent: '#C88A55',
+  accent: '#C08552',
   neutral: '#4E443F',
   text: '#312B27',
   white: '#ffffff'

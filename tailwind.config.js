@@ -29,14 +29,14 @@ module.exports = {
           foreground: '#312B27',
         },
         accent: {
-          DEFAULT: '#C88A55',
+          DEFAULT: '#C08552',
           foreground: '#312B27',
         },
         neutral: '#4E443F',
         text: '#312B27',
         border: '#D5B4A1',
         input: '#FFFFFF',
-  ring: '#C88A55',
+  ring: '#C08552',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -37,7 +37,7 @@ export default function HakkimizdaPage() {
           <AccessibleAnimation>
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex justify-center mb-6">
-                <div className="p-4 bg-gradient-to-r from-[#c88a55] to-[#d5b4a1] rounded-full shadow-lg">
+                <div className="p-4 bg-gradient-to-r from-[#C08552] to-[#d5b4a1] rounded-full shadow-lg">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
               </div>
@@ -47,15 +47,15 @@ export default function HakkimizdaPage() {
                 yaratıyoruz.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#c88a55]/20 text-[#312b27]">
+                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#C08552]/20 text-[#312b27]">
                   <Star className="w-4 h-4 mr-2" />
                   15+ Yıl Deneyim
                 </Badge>
-                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#c88a55]/20 text-[#312b27]">
+                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#C08552]/20 text-[#312b27]">
                   <Users className="w-4 h-4 mr-2" />
                   1000+ Mutlu Çift
                 </Badge>
-                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#c88a55]/20 text-[#312b27]">
+                <Badge variant="secondary" className="px-4 py-2 text-sm bg-[#C08552]/20 text-[#312b27]">
                   <Award className="w-4 h-4 mr-2" />
                   Ödüllü Hizmet
                 </Badge>
@@ -99,7 +99,7 @@ export default function HakkimizdaPage() {
                   </div>
                   <div className="absolute -bottom-6 -right-6 p-4 bg-white rounded-xl shadow-lg">
                     <div className="flex items-center gap-2">
-                      <Heart className="w-5 h-5 text-[#c88a55]" />
+                      <Heart className="w-5 h-5 text-[#C08552]" />
                       <span className="font-semibold text-[#312b27]">15+ Yıl</span>
                     </div>
                   </div>
@@ -163,7 +163,7 @@ export default function HakkimizdaPage() {
                   >
                     <CardContent className="p-8 text-center">
                       <div className="mb-6 flex justify-center">
-                        <div className="p-4 bg-gradient-to-r from-[#c88a55] to-[#d5b4a1] rounded-full group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-4 bg-gradient-to-r from-[#C08552] to-[#d5b4a1] rounded-full group-hover:scale-110 transition-transform duration-300">
                           <value.icon className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -223,7 +223,7 @@ export default function HakkimizdaPage() {
                       <ul className="space-y-2">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-center gap-3">
-                            <CheckCircle className="w-5 h-5 text-[#c88a55] flex-shrink-0" />
+                            <CheckCircle className="w-5 h-5 text-[#C08552] flex-shrink-0" />
                             <span className="text-[#312b27]/80">{feature}</span>
                           </li>
                         ))}
@@ -270,7 +270,7 @@ export default function HakkimizdaPage() {
                   },
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-4xl lg:text-5xl font-playfair font-bold text-[#c88a55] mb-2">
+                    <div className="text-4xl lg:text-5xl font-playfair font-bold text-[#C08552] mb-2">
                       {stat.number}
                     </div>
                     <div className="text-xl font-semibold text-[#312b27] mb-2">{stat.label}</div>
@@ -289,7 +289,7 @@ export default function HakkimizdaPage() {
                   "Sınırsız revizyon hakkı",
                 ].map((advantage, index) => (
                   <div key={index} className="flex items-center gap-4 p-4 bg-white/60 rounded-lg backdrop-blur-sm">
-                    <CheckCircle className="w-6 h-6 text-[#c88a55] flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-[#C08552] flex-shrink-0" />
                     <span className="text-[#312b27] font-medium">{advantage}</span>
                   </div>
                 ))}
@@ -347,7 +347,7 @@ export default function HakkimizdaPage() {
                     </div>
                     <CardContent className="p-6 text-center">
                       <h3 className="text-xl font-playfair font-semibold text-[#312b27] mb-2">{member.name}</h3>
-                      <p className="text-[#c88a55] font-medium mb-2">{member.role}</p>
+                      <p className="text-[#C08552] font-medium mb-2">{member.role}</p>
                       <p className="text-[#312b27]/70 text-sm">{member.experience}</p>
                     </CardContent>
                   </Card>
@@ -400,11 +400,11 @@ export default function HakkimizdaPage() {
                     className="text-center p-6 hover:shadow-lg transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm"
                   >
                     <div className="mb-4 flex justify-center">
-                      <div className="p-3 bg-gradient-to-r from-[#c88a55] to-[#d5b4a1] rounded-full">
+                      <div className="p-3 bg-gradient-to-r from-[#C08552] to-[#d5b4a1] rounded-full">
                         <Award className="w-6 h-6 text-white" />
                       </div>
                     </div>
-                    <div className="text-2xl font-playfair font-bold text-[#c88a55] mb-2">{award.year}</div>
+                    <div className="text-2xl font-playfair font-bold text-[#C08552] mb-2">{award.year}</div>
                     <h3 className="font-semibold text-[#312b27] mb-2 text-sm">{award.award}</h3>
                     <p className="text-[#312b27]/70 text-xs">{award.organization}</p>
                   </Card>
@@ -416,7 +416,7 @@ export default function HakkimizdaPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-[#c88a55] to-[#d5b4a1] text-white">
+  <section className="py-20 bg-gradient-to-r from-[#C08552] to-[#d5b4a1] text-white">
         <div className="container mx-auto px-4">
           <AccessibleAnimation>
             <div className="max-w-4xl mx-auto text-center">
@@ -432,7 +432,7 @@ export default function HakkimizdaPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-[#c88a55] hover:bg-white/90 font-semibold px-8 py-4 text-lg"
+                  className="bg-white text-[#C08552] hover:bg-white/90 font-semibold px-8 py-4 text-lg"
                 >
                   <Link href="/randevu-talep-et">
                     <Calendar className="w-5 h-5 mr-2" />
@@ -443,7 +443,7 @@ export default function HakkimizdaPage() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-[#c88a55] font-semibold px-8 py-4 text-lg bg-transparent"
+                  className="border-white text-white hover:bg-white hover:text-[#C08552] font-semibold px-8 py-4 text-lg bg-transparent"
                 >
                   <Link href="/iletisim">
                     <Phone className="w-5 h-5 mr-2" />

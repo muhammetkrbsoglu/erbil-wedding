@@ -80,7 +80,7 @@ export default function IletisimPage() {
                     "Kişiye özel organizasyon",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5" style={{ color: "#C88A55" }} />
+                      <CheckCircle className="w-5 h-5" style={{ color: "#C08552" }} />
                       <span style={{ color: "#8B7355" }}>{item}</span>
                     </div>
                   ))}
@@ -101,7 +101,7 @@ export default function IletisimPage() {
                 className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
                 style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
               >
-                <Phone className="w-8 h-8 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                <Phone className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   Telefon
                 </h3>
@@ -115,7 +115,7 @@ export default function IletisimPage() {
                 className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
                 style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
               >
-                <Mail className="w-8 h-8 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                <Mail className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   E-posta
                 </h3>
@@ -129,7 +129,7 @@ export default function IletisimPage() {
                 className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
                 style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
               >
-                <MessageCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                <MessageCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   WhatsApp
                 </h3>
@@ -143,7 +143,7 @@ export default function IletisimPage() {
                 className="text-center p-6 border-2 hover:shadow-lg transition-shadow"
                 style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
               >
-                <MapPin className="w-8 h-8 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                <MapPin className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
                 <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                   Adres
                 </h3>
@@ -272,7 +272,7 @@ export default function IletisimPage() {
                   </CardContent>
                 </Card>
 
-                <Button className="w-full" style={{ backgroundColor: "#C88A55", color: "#312B27" }}>
+                <Button className="w-full" style={{ backgroundColor: "#C08552", color: "#312B27" }}>
                   <MapPin className="w-4 h-4 mr-2" />
                   Yol Tarifi Al
                 </Button>
@@ -299,14 +299,14 @@ export default function IletisimPage() {
                   className="text-center p-6 border-2 hover:shadow-lg transition-all hover:scale-105"
                   style={{ borderColor: "#D5B4A1", backgroundColor: "#FEFCFA" }}
                 >
-                  <social.icon className="w-8 h-8 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                  <social.icon className="w-8 h-8 mx-auto mb-4" style={{ color: "#C08552" }} />
                   <h3 className="font-semibold mb-2" style={{ color: "#312B27" }}>
                     {social.name}
                   </h3>
                   <p className="text-sm mb-2" style={{ color: "#8B7355" }}>
                     {social.desc}
                   </p>
-                  <p className="text-xs font-semibold mb-3" style={{ color: "#C88A55" }}>
+                  <p className="text-xs font-semibold mb-3" style={{ color: "#C08552" }}>
                     {social.followers} takipçi
                   </p>
                   <Button variant="outline" size="sm">
@@ -321,9 +321,9 @@ export default function IletisimPage() {
         {/* Emergency Contact */}
         <section>
           <AccessibleAnimation>
-            <Card className="border-2 bg-gradient-to-r from-[#F5EBE0] to-[#FEFCFA]" style={{ borderColor: "#C88A55" }}>
+            <Card className="border-2 bg-gradient-to-r from-[#F5EBE0] to-[#FEFCFA]" style={{ borderColor: "#C08552" }}>
               <CardContent className="p-8 text-center">
-                <Shield className="w-12 h-12 mx-auto mb-4" style={{ color: "#C88A55" }} />
+                <Shield className="w-12 h-12 mx-auto mb-4" style={{ color: "#C08552" }} />
                 <h2 className="font-playfair text-2xl font-bold mb-4" style={{ color: "#312B27" }}>
                   Acil Durum İletişim
                 </h2>

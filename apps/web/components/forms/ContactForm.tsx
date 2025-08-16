@@ -108,7 +108,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.name && (
-          <p className="text-sm" style={{ color: "#C88A55" }}>
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.name.message}
           </p>
         )}
@@ -124,7 +124,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.email && (
-          <p className="text-sm" style={{ color: "#C88A55" }}>
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.email.message}
           </p>
         )}
@@ -140,7 +140,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.phone && (
-          <p className="text-sm" style={{ color: "#C88A55" }}>
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.phone.message}
           </p>
         )}
@@ -156,7 +156,7 @@ export function ContactForm() {
           style={{ backgroundColor: "#F5EBE0", borderColor: "#D5B4A1" }}
         />
         {form.formState.errors.message && (
-          <p className="text-sm" style={{ color: "#C88A55" }}>
+          <p className="text-sm" style={{ color: "#C08552" }}>
             {form.formState.errors.message.message}
           </p>
         )}
@@ -166,7 +166,7 @@ export function ContactForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full bg-accent text-text"
-        style={{ backgroundColor: "#C88A55", color: "#312B27" }}
+  style={{ backgroundColor: "#C08552", color: "#312B27" }}
       >
         {isSubmitting ? "Gönderiliyor..." : "Gönder"}
       </Button>

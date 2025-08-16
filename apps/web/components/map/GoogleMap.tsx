@@ -16,12 +16,12 @@ export function GoogleMap() {
           <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100" />
           <div className="absolute top-4 left-4 w-8 h-8 bg-red-500 rounded-full animate-pulse" />
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <MapPin className="w-12 h-12" style={{ color: "#C88A55" }} />
+            <MapPin className="w-12 h-12" style={{ color: "#C08552" }} />
           </div>
         </div>
 
         <div className="relative z-10 text-center p-6">
-          <MapPin className="w-16 h-16 mx-auto mb-4" style={{ color: "#C88A55" }} />
+          <MapPin className="w-16 h-16 mx-auto mb-4" style={{ color: "#C08552" }} />
           <h3 className="font-playfair text-2xl font-bold mb-2" style={{ color: "#312B27" }}>
             Erbil Wedding
           </h3>
@@ -30,7 +30,7 @@ export function GoogleMap() {
           </p>
           <Button
             className="mb-4"
-            style={{ backgroundColor: "#C88A55", color: "#312B27" }}
+            style={{ backgroundColor: "#C08552", color: "#312B27" }}
             onClick={() => setIsLoaded(true)}
           >
             <Navigation className="w-4 h-4 mr-2" />
@@ -42,7 +42,7 @@ export function GoogleMap() {
       <CardContent className="p-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex items-center space-x-3">
-            <MapPin className="w-5 h-5" style={{ color: "#C88A55" }} />
+            <MapPin className="w-5 h-5" style={{ color: "#C08552" }} />
             <div>
               <p className="font-semibold" style={{ color: "#312B27" }}>
                 Adres
@@ -54,7 +54,7 @@ export function GoogleMap() {
           </div>
 
           <div className="flex items-center space-x-3">
-            <Phone className="w-5 h-5" style={{ color: "#C88A55" }} />
+            <Phone className="w-5 h-5" style={{ color: "#C08552" }} />
             <div>
               <p className="font-semibold" style={{ color: "#312B27" }}>
                 Telefon
@@ -68,7 +68,7 @@ export function GoogleMap() {
 
         <div className="mt-4 pt-4 border-t" style={{ borderColor: "#D5B4A1" }}>
           <div className="flex items-center space-x-3">
-            <Clock className="w-5 h-5" style={{ color: "#C88A55" }} />
+            <Clock className="w-5 h-5" style={{ color: "#C08552" }} />
             <div>
               <p className="font-semibold" style={{ color: "#312B27" }}>
                 Çalışma Saatleri
